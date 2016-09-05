@@ -1,0 +1,467 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>SPA BEAUTY SHOP</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,600italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic,300italic' rel='stylesheet' type='text/css'>
+        <link href="css/owl.carousel.css" rel="stylesheet" type="text/css"/>
+        <link href="css/owl.theme.css" rel="stylesheet" type="text/css"/>
+        <link href="css/image-switcher.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+
+        <!-- HEADER -->
+        <header>
+            <div class="container">
+                <section class="headerTop clearfix">
+                    <ul class="language text-center list-inline">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ENG <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">ENGLISH</a></li>
+                                <li><a href="#">SERBIAN</a></li>
+                                <li><a href="#">ITALIAN</a></li>
+                                <li><a href="#">DEUTCH</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">USD<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">USD</a></li>
+                                <li><a href="#">RSD</a></li>
+                                <li><a href="#">EURO</a></li>
+                                <li><a href="#">GBP</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="account list-inline">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                MY ACCOUNT
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">PROFILE</a></li>
+                                <li><a href="#">ORDERS</a></li>
+                                <li><a href="#">LOG OUT</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                LOGIN
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu login">
+                                <li>LOGIN OR REGISTER</li>
+                                <li><a href="login.html" class="accLog">LOGIN</a></li>
+                                <li>OR</li>
+                                <li><a href="register.html" class="account">CREATE ACCOUNT</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="line"></div>
+
+            <!-- NAVIGATION -->
+            <div class="container myNav">
+                <nav class="navbar navbar-default navDrop">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <img src="img/logo.png" alt="" class="img-responsive"/>
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                            <ul class="nav navbar-nav navbar-right  dropShop">
+                                <li><a href="#" class="text-uppercase">HOME</a></li>
+                                <li><a href="#" class="text-uppercase" data-toggle="modal" data-target="#myModal">PAGES</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        SHOP<span class="caret" style="color:#6cc513;"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropSpa">
+                                        <li><a href="#">SPA WOMEN</a></li>
+                                        <li><a href="#">SPA MEN</a></li>
+                                        <li><a href="#">SPA ALL</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#" class="text-uppercase">GALERY</a></li>
+                                <li><a href="#" class="text-uppercase">CONTACT</a></li>
+                                <li class="shopingCart"><a href="#"><span class="fa fa-shopping-cart"></span><span class="badge">02</span></a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                        <div class="cartProducts">
+                            <table class="table table-responsive">
+                                <tbody class="text-center">
+                                    <tr> 
+                                        <td>
+                                            <figure>
+                                                <a href="#"><img src="" alt=""/></a>  
+                                            </figure>
+                                        </td>
+                                        <td>LOREM IPSUM</td> 
+                                        <td>2497DIN</td> 
+                                        <td><a href="#javascript:void(0)" class="remove">X</a></td>
+                                    </tr> 
+                                    <tr> 
+                                        <td>
+                                            <figure>
+                                                <a href="#"><img src="" alt=""/></a> 
+                                            </figure>
+                                        </td>
+                                        <td>LOREM IPSUM</td> 
+                                        <td>2679DIN</td> 
+                                        <td><a href="#javascript:void(0)" class="remove">X</a></td>
+                                    </tr> 
+                                </tbody>
+                                <tfoot>
+                                    <tr> 
+                                        <td>TOTAL:</td> 
+                                        <td></td> 
+                                        <td></td> 
+                                        <td><button>KUPI</button></td>
+                                    </tr> 
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section class="logPg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <article>
+                                <h3>Prijavite se</h3>
+                                <form class="html_form" data-toggle="validator" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail" class="control-label sr-only"></label>
+                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Email addresa je neispravna" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group logMail">
+                                        <label for="inputPassword" class="control-label sr-only"></label>
+                                        <div class="input-group">
+                                        <input  type="password" data-minlength="" class="form-control" id="inputPassword" placeholder="Lozinka" data-error="" required>
+                                        <a href="javascript:void(0)" class="input-group-addon text-center"><span class="showPass fa fa-eye"></span></a>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Potvrdi</button>
+                                    </div>
+                                </form>
+                                <a href="forgot_pass.html" class="code pull-right">Zaboravili ste lozinku?</a>
+                            </article>
+                        </div>
+                        <div class="col-md-7 col-md-offset-1">
+                            <article>
+                                <div class="jumbotron">
+                                    <h3>Zaštita podataka</h3> 
+                                    <p>
+                                        Donec id elit non mi porta gravida at eget metus. 
+                                        Fusce dapibus, tellus ac cursus commodo, tortor 
+                                        mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                                    </p> 
+                                    <p>
+                                        Donec id elit non mi porta gravida at eget metus. 
+                                        Fusce dapibus, tellus ac cursus commodo, tortor 
+                                        mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                                    </p> 
+                                    <ul class="list-unstyled phone">
+                                        <li>Beograd</li>
+                                        <li>Tel. 011/1234-567,</li>
+                                        <li>011/1234-568</li>
+                                        <li>Fax. 011/1234-569</li>
+                                        <li>
+                                            Email.
+                                            <a href="mailto:custom@email.com">custom@email.com</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            <!-- SECTION 7 "newsletter" -->    
+            <section class="newsletter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <article class="social">
+                                <ul class="list-inline list-unstyled text-center">
+                                    <li>
+                                        <a href="#"><span class="fa fa-facebook"></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="fa fa-twitter"></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="pint"><span class="fa fa-pinterest-p"></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="fa fa-google-plus"></span></a>
+                                    </li>
+                                </ul>
+                            </article>
+                        </div>
+                        <div class="col-md-9">
+                            <article>
+                                <form>
+                                    <label for="inputMail">NEWSLETTER</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="E-mail Address">
+                                        <span class="input-group-btn">
+                                            <button id="inputMail" class="btn btn-default" type="submit"><span class="fa fa-play"></span></button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 8 "address" -->
+            <section class="address">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <article class="contact">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/logo.png" alt="" class="img-responsive"/>
+                                        </a>
+                                        <div class="smallLine"></div>
+                                    </li>
+                                    <li>
+                                        <p class="map"><span class="fa fa-map-marker"></span>&nbsp; 28 Green Tower, Street Name New York City, USA</p>
+                                    </li>
+                                    <li>
+                                        <p class="map"><span class="fa fa-phone"></span>&nbsp; +00880-444 222 333</p>
+                                    </li>
+                                    <li>
+                                        <p class="map"><a href="mailto:contact@plashbeauty.com"><span class="fa fa-envelope"></span>&nbsp; contact@plashbeauty.com</a></p>
+                                    </li>
+                                </ul>
+                            </article>
+                        </div>
+                        <div class="col-md-2">
+                            <article>
+                                <h4>Main Menu</h4>
+                                <div class="smallLine"></div>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">About Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Our Products</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Popular Brands</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </article>
+                        </div>
+                        <div class="col-md-2">
+                            <article>
+                                <h4>Shopping Info.</h4>
+                                <div class="smallLine"></div>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">Service</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Delivery</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Returns</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Gift Card</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Current Discount</a>
+                                    </li>
+                                </ul>
+                            </article>
+                        </div>
+                        <div class="col-md-2">
+                            <article>
+                                <h4>Quick Links</h4>
+                                <div class="smallLine"></div>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">Advanced Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Site Map</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Checkout</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Praivecy Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">FAQs</a>
+                                    </li>
+                                </ul>
+                            </article>
+                        </div>
+                        <div class="col-md-3">
+                            <article>
+                                <h4>Payment Methods</h4>
+                                <div class="smallLine"></div>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <p>
+                                            Connected with our social media and get update protidin
+                                        </p>
+                                    </li>
+                                    <li class="payment">
+                                        <a href="#">
+                                            <img src="img/maestro.png" alt=""/>
+                                        </a>
+                                        <a href="#">
+                                            <img src="img/paypal.png" alt=""/>
+                                        </a>
+                                        <a href="#">
+                                            <img src="img/american.png" alt=""/>
+                                        </a>
+                                    </li>
+                                    <li class="payment">
+                                        <a href="#">
+                                            <img src="img/visa.png" alt=""/>
+                                        </a>
+                                        <a href="#">
+                                            <img src="img/discover.png" alt=""/>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- SECTION 9 "rights" -->
+             <section class=" rights text-center">
+                <p>2016 &REG; All Rights Reserved&FilledVerySmallSquare;</p>
+                <p class="">Ovaj projekat je realizovan u okviru <a href="http://school.cubes.rs">CUBES SCHOOL</a>. Projekat realizovali: FRONTEND <a href="#">Tanja Nikolic</a> & <a href="#">Miroslav Ranisavljevic</a> BACKAND: </p>
+            </section>
+        </footer>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="myModalLabel">Insert main title</h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Insert second title here</h4>
+                        <p>
+                            Cras mattis consectetur purus sit amet fermentum. Cras 
+                            justo odio, dapibus ac facilisis in, egestas eget quam. 
+                            Morbi leo risus, porta ac consectetur ac, vestibulum at eros
+                        </p>
+                        <p>
+                            Cras mattis consectetur purus sit amet fermentum. Cras 
+                            justo odio, dapibus ac facilisis in, egestas eget quam. 
+                            Morbi leo risus, porta ac consectetur ac, vestibulum at eros
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src="js/jquery-3.0.0.min.js" type="text/javascript"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/owl.carousel.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+        <script src="/resources/demos/external/jquery-mousewheel/jquery.mousewheel.js"></script>
+        <script src="js/validator.js" type="text/javascript"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function (b, o, i, l, e, r) {
+                b.GoogleAnalyticsObject = l;
+                b[l] || (b[l] =
+                        function () {
+                            (b[l].q = b[l].q || []).push(arguments)
+                        });
+                b[l].l = +new Date;
+                e = o.createElement(i);
+                r = o.getElementsByTagName(i)[0];
+                e.src = '//www.google-analytics.com/analytics.js';
+                r.parentNode.insertBefore(e, r)
+            }(window, document, 'script', 'ga'));
+            ga('create', 'UA-XXXXX-X', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>

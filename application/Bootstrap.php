@@ -16,8 +16,35 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					'StaticPage' => 0
 				)
 			),
-			
-			'PhotoGalleriesPage' => array(
+                    
+                        'AboutUsPage' => array(
+                                'title' => 'About Us Page',
+                                'subtypes' => array(
+                                )
+                        ),
+                    
+                        'ServicesPage' => array(
+                                'title' => 'Services Page',
+                                'subtypes' => array(
+                    
+                                )
+                        ),
+                    
+                        'ContactPage' => array(
+                                'title' => 'Contact Page',
+                                'subtypes' => array(
+                    
+                                )
+                        ),
+                    
+                        'PhotosPage' => array(
+				'title' => 'Photos Page',
+				'subtypes' => array(
+					
+				)
+			),
+                    
+                        'PhotoGalleriesPage' => array(
 				'title' => 'Photo Galleries Page',
 				'subtypes' => array(
 					
@@ -27,7 +54,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		
 		$rootSitemapPageTypes = array(
 			'StaticPage' => 0,
-			'PhotoGalleriesPage' => 1
+                        'AboutUsPage' => 1,
+                        'ServicesPage' => 1,
+                        'ContactPage' => 1,
+                        'PhotosPage' => 1,
+			'PhotoGalleriesPage' => 1,
 		);
 		
 		Zend_Registry::set('sitemapPageTypes', $sitemapPageTypes);

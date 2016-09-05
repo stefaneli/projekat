@@ -1,0 +1,399 @@
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    main{
+        margin-top: 0;
+    }
+    .myNav .navbar-toggle {
+        display: none;
+    }
+    .nav {
+        background: transparent;
+        border-top: none;
+    }
+    .headerTop{
+        padding: 10px 0;
+    }
+    .headerTop ul.language{
+        float: left;
+        padding-left: 30px;
+    }
+    .headerTop ul.account{
+        float: right;
+    }
+    .navbar{
+        margin-top: 10px;
+    }
+    .item p {
+        display: block;
+    }
+    .item h2{
+        font-size: 25px;
+    }
+    .carousel-indicators li{
+        margin-bottom: 0px;
+    }
+    .carousel-indicators .active{
+        margin-bottom: 0px;
+    }
+    .soap{
+        margin-top: 0;
+    }
+    .soap p{
+        padding: 3px 20px;
+    }
+    .pure{
+        margin-top: 0;
+    }
+    .pure div.shopPure{
+        padding-top: 0;
+    }
+    .botanic{
+        margin-top: 45px;
+    }
+    .imageHover{
+        padding-top: 60%;
+    }
+    .plashOil{
+        margin-top: 30px;
+    }
+    .plashOil img{
+        margin-top: -40px;
+    }
+    .shipping article{
+        padding: 20px;
+        margin-bottom: 0;
+    }
+    footer{
+        margin-top: 40px;
+    }
+    .newsletter{
+        margin-bottom: 30px;
+    }
+    /******************************PAGE 2***********************/
+    .view article{
+        padding: 15px 0;
+    }
+    .view .btn-group{
+        float: right;
+    }
+    .pages .view{
+        float: right;
+        padding-top: 15px;
+    }
+    .productList .imageHover{
+        padding-top: 50%;
+    }
+    div.listView{
+        display: block;
+        float: left;
+    }
+    div.cog{
+        display: none;
+    }
+    .skinCare{
+        display: block;
+    }
+    /******************************PAGE 2_1***********************/
+    .view article.list{
+        text-align: left;
+    }
+    .aboutProduct button{
+        padding: 15px 30px;
+    }
+    .aboutProduct .fa-refresh,
+    .aboutProduct .fa-heart-o{
+        padding: 20px;
+        font-size: 25px;
+    }
+    .viewDown{
+        text-align: right;
+        padding-top: 20px;
+    }
+    .pagination{
+        margin: 20px 0;
+    }
+    .pagesList .listView{
+        text-align: left;
+    }
+    /******************************PAGE 4***********************/
+    
+    /***********************SHOPPING CART***********************/
+    .cartProducts{
+    top: 70px;
+}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {     
+    .soap {
+        padding-bottom: 20px;
+    }
+    .discount{
+        padding-top: 80px;
+    }
+    .newsletter .social{
+        padding-top: 35px;
+        padding-left: 20px;
+    }
+
+  
+    .newsletter form{
+        padding-right: 50px;
+        width: 400px;
+        float: right;
+    }
+    footer .contact{
+        margin-top: -15px;
+    }
+    /******************************PAGE 2***********************/
+    .gridView{
+        top: 60%;
+    }
+    .gridView h3{
+        font-size: 30px;
+    }
+    .weightBorder a{
+        padding: 0;
+        font-size: 10px;
+    }
+    .filtersSelect .skinCare article{
+        padding: 30px 5px;
+    }
+    .filtersSelect article.weight{
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .categories,
+    .price,
+    .weight{
+        margin-bottom: 32px;
+    }
+    .filtersSelect .bestSale{
+        padding: 0;
+    }
+    .bestSale h3{
+        font-size: 36px;
+    }
+    .bestSale:last-of-type .saleHover{
+        padding-top: 30%;
+    }
+    .productList article{
+        padding: 0;
+    }
+    /******************************PAGE 2_1*********************/
+    article.listView{
+        text-align: left;
+    }
+    /******************************PAGE 3***********************/
+    .singleProduct {
+        margin-top: 80px;
+    }
+    .arcticSpa{
+        margin-top: 0;
+    }
+    .arcticSpa h5{
+        margin-top: 30px;
+    }
+    .arcticSpa .fa-refresh,
+    .arcticSpa .fa-heart-o{
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .arcticSpa ul.weightBorder{
+        width: 180px;
+    }
+    .preview #main{
+        width: 398px;
+        height: 530px; 
+    }
+    /******************************PAGE 4***********************/
+    
+
+    /******************************PAGE 5***********************/
+    .contAddress{
+        padding: 60px 35px;
+    }
+    .gMaps iframe{
+        width: 100%;
+        height: 400px;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    .headerTop .list-inline{
+        text-align: left;
+    }
+    .navbar{
+        padding: 20px 0;
+    }
+    .navbar-default .navbar-nav > li > a{
+        padding-right: 50px;
+    }
+    .shopingCart{
+        padding-left: 110px;
+    }
+    .carousel-caption{
+        text-align: left;
+        width: 40%;
+    }
+    .carousel-caption p{
+        width: 60%;
+    }
+    .item h2{
+        font-size: 60px;
+        padding-bottom: 25px;
+    }
+    .item p{
+        font-size: 14px;
+        padding-bottom: 30px;
+    }
+    .item a{
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    .tonic{
+        margin-top: 80px;
+    }
+    .tonic p{
+        font-size: 15px;
+    }
+    .herbalTonic div.shopTonic{
+        padding-top: 130px;
+    }
+    .tonic button{
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+    .soap{
+        padding-top: 38px;
+    }
+    .soap img{
+        width: 90%;
+        padding-left: 20px;
+        top: 25px;
+    }
+    .shopSoap{
+        padding: 16px 0 40px;;
+    }
+    .soap p{
+        padding: 0 20px;
+        margin-bottom: 14px;
+    }
+    .pure h3{
+        font-size: 22px;
+        margin-top: 70px;
+    }
+    .pure p{
+        font-size: 12px;
+        width: 80%;
+    }
+    .pure div.shopPure{
+        padding-left: 25px;
+        width: 80%;
+    }
+    .shopBotanic h3{
+        font-size: 22px;
+    }
+    .popular h4{
+        font-size: 24px;
+    }
+    .plashOil{
+        margin-top: 70px;
+        padding-top: 0;
+    }
+    .plashOil h3{
+        margin-bottom: 30px;
+    }
+    .discount{
+        padding-top: 180px;
+    }
+    .discount p:last-of-type{
+        margin-top: 35px;
+    }
+    .plashOil button{
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+    .plashOil img{
+        margin-top: -30px;
+    }
+    .popular h4{
+        font-size: 20px;
+        padding-top: 30px;
+    }
+    .popular{
+        padding-bottom: 50px;
+    }
+    .shipping{
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+    .shipping article{
+        padding: 40px 60px 50px 50px;
+    }
+    .newsletter label{
+        font-size: 16px;
+    }
+    .newsletter{
+        margin-bottom: 80px;
+    }
+    footer .contact{
+        margin-top: -25px;
+    }
+    .address h4,
+    .address ul li{
+        text-align: left;
+    }
+    .address img{
+        margin: 0;
+    }
+    .contact .smallLine{
+        margin-left: 10px;
+    }
+    .smallLine{
+        margin: 0;
+        margin-bottom: 30px;
+    }
+    .payment img:hover{
+       transform: scale(1.1);
+    }
+    footer .address{
+        padding-bottom: 80px;
+    }
+    .rights{
+        padding: 30px;
+    }
+    /******************************PAGE 4***********************/
+    .ourCompany{
+        margin-bottom: 50px;
+    }
+   
+    /******************************PAGE 5***********************/
+    .contAddress{
+        padding: 75px 35px;
+    }
+    .addrCon{
+        padding-left: 50px;
+        padding-right: 20px;
+    }
+    .inputForm{
+        width: 90%;
+    }
+    .gMaps iframe{
+        width: 100%;
+        height: 500px;
+    }
+    /***************************LOGIN PAGE***********************/
+    .logPg button{
+        width: 300px;
+    }
+        /************************SHOPPING CART***********************/
+    .cartProducts{
+        top: 150px;
+    }
+}
+
+
+
