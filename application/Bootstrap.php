@@ -37,8 +37,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                 )
                         ),
                     
-                        'PhotosPage' => array(
-				'title' => 'Photos Page',
+                        'GalleryPage' => array(
+				'title' => 'Gallery Page',
 				'subtypes' => array(
 					
 				)
@@ -57,7 +57,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                         'AboutUsPage' => 1,
                         'ServicesPage' => 1,
                         'ContactPage' => 1,
-                        'PhotosPage' => 1,
+                        'GalleryPage' => 1,
 			'PhotoGalleriesPage' => 1,
 		);
 		
@@ -83,9 +83,61 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					)
 				));
 			}
-			
-			
-			if ($sitemapPageMap['type'] == 'PhotoGalleriesPage') {
+                        
+                        if ($sitemapPageMap['type'] == 'AboutUsPage') {
+                                $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+                                        $sitemapPageMap['url'], array(
+                                    'controller' => 'aboutus',
+                                    'action' => 'index',
+                                    'sitemap_page_id' => $sitemapPageId
+                                        )
+                                ));
+                        }
+                        
+                        if($sitemapPageMap['type'] == 'ServicesPage'){
+                                $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+                                        $sitemapPageMap['url'],
+                                        array(
+                                            'controller' => 'services',
+                                            'action' => 'index',
+                                            'sitemap_page_id' => $sitemapPageId
+                                                 )
+                                        ));
+                        }
+            
+                        if($sitemapPageMap['type'] == 'ContactPage'){
+                                $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+                                        $sitemapPageMap['url'],
+                                        array(
+                                            'controller' => 'contact',
+                                            'action' => 'index',
+                                            'sitemap_page_id' => $sitemapPageId
+                                )
+                                        ));
+                        }
+                        
+                        if($sitemapPageMap['type'] == 'GalleryPage'){
+                                $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+                                        $sitemapPageMap['url'],
+                                        array(
+                                            'controller' => 'photogalleries',
+                                            'action' => 'index',
+                                            'sitemap_page_id' => $sitemapPageId
+                                )
+                                        ));
+                                
+                                $router->addRoute('photo-gallery-route', new Zend_Controller_Router_Route(
+					$sitemapPageMap['url'] . '/:id/:photo_gallery_slug',
+					array(
+						'controller' => 'photogalleries',
+						'action' => 'gallery',
+						'sitemap_page_id' => $sitemapPageId
+					)
+				));
+                        }
+
+
+                        if ($sitemapPageMap['type'] == 'PhotoGalleriesPage') {
 				
 				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
 					$sitemapPageMap['url'],

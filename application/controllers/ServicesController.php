@@ -10,7 +10,13 @@ class ServicesController extends Zend_Controller_Action
 
     public function indexAction()
     {
-      
+      $request = $this->getRequest();
+
+
+        /*         * ****** Get PhotoGalleriesPage from sitemap ****** */
+        $sitemapPageId = (int) $request->getParam('sitemap_page_id');
+
+        $this->view->activePage = $sitemapPageId;
         
     }
 

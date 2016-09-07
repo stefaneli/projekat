@@ -2,7 +2,7 @@
 
 class PhotogalleriesController extends Zend_Controller_Action
 {
-	public function indexAction() {
+	public function galleryAction() {
 		$request = $this->getRequest();
 		
 		$sitemapPageId = (int) $request->getParam('sitemap_page_id');
@@ -43,12 +43,14 @@ class PhotogalleriesController extends Zend_Controller_Action
 		$this->view->photoGalleries = $photoGalleries;
 	}
 	
-	public function galleryAction() {
+	public function indexAction() {
 		$request = $this->getRequest();
 		
 		
 		/******** Get PhotoGalleriesPage from sitemap *******/
 		$sitemapPageId = (int) $request->getParam('sitemap_page_id');
+                
+                $this->view->activePage = $sitemapPageId;
 		
 		if ($sitemapPageId <= 0) {
 			throw new Zend_Controller_Router_Exception('Invalid sitemap page id: ' . $sitemapPageId, 404);
@@ -63,7 +65,9 @@ class PhotogalleriesController extends Zend_Controller_Action
 		}
 		/******** Get PhotoGalleriesPage from sitemap *******/
 		
-		$id = (int) $request->getParam('id');
+		//$id = (int) $request->getParam('id');
+                
+                $id = 1;
 		
 		if ($id <= 0) {
 			throw new Zend_Controller_Router_Exception('Invalid photo gallery id: ' . $id, 404);
@@ -89,6 +93,7 @@ class PhotogalleriesController extends Zend_Controller_Action
 			)
 		));
 		
+                
 		$this->view->sitemapPage = $sitemapPage;
 		$this->view->photoGallery = $photoGallery;
 		$this->view->photos = $photos;

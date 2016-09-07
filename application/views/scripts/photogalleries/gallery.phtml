@@ -1,8 +1,60 @@
 <?php
 
-/*** treba da naslov u tabu u browseru bude Naslov Foto Galerije | Foto Galerije | Cubes CMS ***/
-$this->headTitle($this->sitemapPage['title']);
-$this->headTitle($this->photoGallery['title']);
-
-$this->headMeta()->appendName('description', $this->photoGallery['description']);
+$photoGalleries = $this->photoGalleries;
+$sitemapPage = $this->sitemapPage;
+$this->headTitle($sitemapPage['title']);
+$this->headMeta()->appendName('description', $this->sitemapPage['description']);
 ?>
+
+
+<!-- CORE : begin -->
+			<div id="core">
+
+				<!-- PAGE HEADER : begin -->
+				<div id="page-header">
+					<div class="container">
+						<h1>Galerija</h1>
+						<ul class="breadcrumbs">
+							<li><a href="index-2.html">Naslovan Strana</a></li>
+							<li><a href="about-us.html">Salon</a></li>
+							<li>Gallery</li>
+						</ul>
+					</div>
+				</div>
+				<!-- PAGE HEADER : begin -->
+
+				<!-- PAGE CONTENT : begin -->
+				<div id="page-content">
+					<div class="various-content">
+                                            
+                                            <!-- DESCRIPTION : begin -->
+                                                <?php if($sitemapPage['body']) { ?>
+						<div class="container">
+                                                    <p>
+                                                        <?php echo $sitemapPage['body'] ;?>
+                                                    </p>
+						</div>
+                                                <?php } ?>
+						<!-- DESCRIPTION : end -->
+
+						<!-- GALLERY : begin -->
+						<div class="c-gallery">
+							<div class="thumb-list">
+								<div class="thumb"><a href="images/gallery_01.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_01.jpg" alt=""></a></div>
+								<div class="thumb"><a href="images/gallery_02.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_02.jpg" alt=""></a></div>
+								<div class="thumb"><a href="images/gallery_03.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_03.jpg" alt=""></a></div>
+								<div class="thumb"><a href="images/gallery_04.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_04.jpg" alt=""></a></div>
+								<div class="thumb"><a href="images/gallery_06.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_06.jpg" alt=""></a></div>
+								<div class="thumb"><a href="images/gallery_07.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_07.jpg" alt=""></a></div>
+								<div class="thumb"><a href="images/gallery_08.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_08.jpg" alt=""></a></div>
+								<div class="thumb"><a href="images/gallery_05.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_05.jpg" alt=""></a></div>
+							</div>
+						</div>
+						<!-- GALLERY : end -->
+
+					</div>
+				</div>
+				<!-- PAGE CONTENT : end -->
+
+			</div>
+			<!-- CORE : end -->

@@ -86,9 +86,9 @@ $user = Zend_Auth::getInstance()->getIdentity();
                         <li>
                             <a href="<?php echo $this->url(array('controller' => 'admin_indexslides'), 'default', true);?>"><i class="fa fa-sliders fa-fw"></i> Index Slider</a>
                         </li>
-						<li>
+<!--						<li>
                             <a href="<?php echo $this->url(array('controller' => 'admin_photogalleries'), 'default', true);?>"><i class="fa fa-photo fa-fw"></i> Photo Galleries</a>
-                        </li>
+                        </li>-->
 						<li>
                             <a href="<?php echo $this->url(array('controller' => 'admin_sitemap'), 'default', true);?>"><i class="fa fa-sitemap fa-fw"></i> Sitemap</a>
                         </li>
@@ -98,6 +98,10 @@ $user = Zend_Auth::getInstance()->getIdentity();
 						<li>
                             <a href="<?php echo $this->url(array('controller' => 'admin_users'), 'default', true);?>"><i class="fa fa-user fa-fw"></i> Users</a>
                         </li>
+                        <li>
+                            <a href="<?php echo $this->url(array('controller' => 'admin_photogalleries', 'action' => 'edit', 'id' => 1), 'default', true);?>"><i class="fa fa-photo fa-fw"></i> Photo Gallery</a>
+                        </li>
+                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

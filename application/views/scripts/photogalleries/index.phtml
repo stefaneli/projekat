@@ -1,5 +1,57 @@
 <?php
 
-$this->headTitle($this->sitemapPage['title']);
+$photoGallery = $this->photoGallery;
+$sitemapPage = $this->sitemapPage;
+$photos = $this->photos;
+$this->headTitle($sitemapPage['title']);
 $this->headMeta()->appendName('description', $this->sitemapPage['description']);
 ?>
+
+
+<!-- CORE : begin -->
+			<div id="core">
+
+				<!-- PAGE HEADER : begin -->
+				<div id="page-header">
+					<div class="container">
+						<h1>Galerija</h1>
+						
+							<?php echo $this->breadcrumbs($sitemapPage); ?>
+						
+					</div>
+				</div>
+				<!-- PAGE HEADER : begin -->
+
+				<!-- PAGE CONTENT : begin -->
+				<div id="page-content">
+					<div class="various-content">
+                                            
+                                            <!-- DESCRIPTION : begin -->
+                                                <?php if($sitemapPage['body']) { ?>
+						<div class="container">
+                                                    <p>
+                                                        <?php echo $sitemapPage['body'] ;?>
+                                                    </p>
+						</div>
+                                                <?php } ?>
+						<!-- DESCRIPTION : end -->
+
+						<!-- GALLERY : begin -->
+                                                
+                                                    
+                                               
+						<div class="c-gallery">
+							<div class="thumb-list">
+                                                            <?php foreach ($photos as $photo) { ?>
+								<div class="thumb"><a href="<?php echo $this->photoUrl($photo);?>" class="lightbox" data-lightbox-group="gallery"><img src="<?php echo $this->photoUrl($photo);?>" alt="<?php echo $photo['title']?>"></a></div>
+							<?php  } ?>
+                                                        </div>
+						</div>
+						<!-- GALLERY : end -->
+
+					</div>
+				</div>
+				<!-- PAGE CONTENT : end -->
+
+			</div>
+			<!-- CORE : end -->

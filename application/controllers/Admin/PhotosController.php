@@ -2,7 +2,37 @@
 
 class Admin_PhotosController extends Zend_Controller_Action
 {
-	
+    
+                public function indexAction() {
+                    
+		$flashMessenger = $this->getHelper('FlashMessenger');
+		
+		$systemMessages = array(
+			
+			'success' => $flashMessenger->getMessages('success'),
+			'errors' => $flashMessenger->getMessages('errors')
+		);
+		
+		// prikaz svih memeber-a
+		
+		$cmsPhotosDbTable = new Application_Model_DbTable_CmsPhotos();
+		
+		$photos = $cmsPhotosDbTable->search(array(
+			//'filters' => array(
+			//	'status' => Application_Model_DbTable_CmsPhotoGalleries::STATUS_ENABLED
+			//),
+			'orders' => array(
+				'order_number' => 'ASC'
+			),
+			//'limit' => 4,
+			//'page' => 2
+		));
+		
+		$this->view->photos = $photos;
+		$this->view->systemMessages = $systemMessages;
+		
+	}	
+    
 	public function addAction() {
 		
 		$request = $this->getRequest();
