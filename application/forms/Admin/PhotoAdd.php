@@ -23,8 +23,8 @@ class Application_Form_Admin_PhotoAdd extends Zend_Form
 		$photoUpload->addValidator('Count', true, 1)
 			->addValidator('MimeType', true, array('image/jpeg', 'image/gif', 'image/png'))
 			->addValidator('ImageSize', false, array(
-				'minwidth' => 660,
-				'minheight' => 495,
+				'minwidth' => 600,
+				'minheight' => 400,
 				'maxwidth' => 2000,
 				'maxheight' => 2000
 			))

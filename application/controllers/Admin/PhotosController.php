@@ -159,6 +159,8 @@ class Admin_PhotosController extends Zend_Controller_Action
 				'action' => 'edit',
 				'id' => $photoGallery['id']
 			), 'default', true);
+                
+               $this->view->systemMessages = $systemMessages; 
 	}
 	
 	public function editAction() {

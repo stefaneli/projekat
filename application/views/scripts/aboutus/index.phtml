@@ -1,1 +1,121 @@
+<?php
+$sitemapPage = $this->sitemapPage;
+$this->headTitle($sitemapPage['title']);
+$this->headMeta()->appendName('description', $sitemapPage['description']);
+?>
 
+
+
+
+
+<!-- CORE : begin -->
+			<div id="core" class="core-bg-1">
+
+				<!-- PAGE HEADER : begin -->
+				<div id="page-header">
+					<div class="container">
+						<h1>O nama</h1>
+                                                
+						<?php echo $this->breadcrumbs($sitemapPage); ?>
+					</div>
+				</div>
+				<!-- PAGE HEADER : begin -->
+
+				<div class="container">
+
+					<!-- PAGE CONTENT : begin -->
+					<div id="page-content">
+						<div class="various-content">
+
+							<!-- INTRO SECTION : begin -->
+							<section>
+
+								<div class="row">
+									<div class="col-sm-6">
+
+										<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. On her way she met a copy.</p>
+										<p><strong>The copy warned the Little Blind Text</strong>, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind.</p>
+
+									</div>
+									<div class="col-sm-6">
+
+										<p><img src="<?php echo $this->baseUrl("/front/images/about_us.jpg"); ?>" alt="Nas salon"></p>
+
+									</div>
+								</div>
+
+							</section>
+							<!-- INTRO SECTION : end -->
+
+							<!-- TEAM SECTION : begin -->
+							<section>
+
+								<h2>Članovi našeg tima</h2>
+
+								<div class="row">
+                                                                    
+                                                                    <?php foreach ($this->members as $member) { ?>
+                                                                    
+                                                                    <div class="col-sm-6">
+
+										<!-- TEAM MEMBER : begin -->
+										<div class="c-team-member m-has-portrait">
+											<div class="member-inner">
+												<p class="member-portrait"><span><img src="<?php echo $this->memberImgUrl($member); ?>" alt="<?php echo $this->escape($member['first_name'] . ' ' . $member['last_name']);?>"></span></p>
+												<h4 class="member-name"><?php echo $this->escape($member['first_name'] . ' ' . $member['last_name']);?></h4>
+												<h3 class="member-role"><?php echo $this->escape($member['work_title']); ?></h3>
+<!--												<div class="member-description">
+													<p>Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. </p>
+												</div>
+												<ul class="member-social">
+													<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+													<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+												</ul>-->
+											</div>
+										</div>
+										<!-- TEAM MEMBER : end -->
+
+									</div>
+                                                                        
+                                                                   <?php } ?>
+                                                                    
+                                                                    <hr class="c-divider m-transparent m-x-small display-none-sm">
+                                                                    
+									
+									
+								</div>
+
+
+							</section>
+							<!-- TEAM SECTION : end -->
+
+							<!-- CTA MESSAGE SECTION : begin -->
+							<section>
+
+								<!-- CTA MESSAGE : begin -->
+								<div class="c-cta-message">
+									<div class="row">
+										<div class="col-sm-8">
+											<h2>Posetite najbolji salon lepote u kraju!</h2>
+											<p>Posetite nas i uverite se sami zašto smo najbolji.</p>
+										</div>
+										<div class="col-sm-4">
+											<p class="textalign-right">
+												<a href="<?php echo $this->sitemapPageUrl(6); ?>" class="c-button">Kontakt Info</a>
+											</p>
+										</div>
+									</div>
+								</div>
+								<!-- CTA MESSAGE : end -->
+
+							</section>
+							<!-- CTA MESSAGE SECTION : end -->
+
+						</div>
+					</div>
+					<!-- PAGE CONTENT : end -->
+
+				</div>
+
+			</div>
+			<!-- CORE : end -->

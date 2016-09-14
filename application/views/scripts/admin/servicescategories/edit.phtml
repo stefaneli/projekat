@@ -1,0 +1,515 @@
+
+<?php 
+
+$this->headTitle('Categies - Edit Categry');
+
+$form = $this->form;
+
+$form->setElementDecorators(array('ViewHelper'));
+
+?>
+
+<div class="page-header">
+	<h1>Categies <small>Edit Category</small></h1>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<?php echo $this->systemMessagesHtml($this->systemMessages);?>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading text-right">
+				<div class="btn-group" role="group" aria-label="...">
+					<a 
+						href="<?php echo $this->url(array('controller' => 'admin_servicescategories', 'action' => 'index'), 'default', true);?>"
+						class="btn btn-default"
+						><i class="glyphicon glyphicon-arrow-left"></i> Back to all categories</a>
+				</div>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+					<input type="hidden" name="task" value="update">
+					
+					<fieldset>
+
+						<!-- Form Name -->
+						<legend>Edit Category - <?php echo $this->escape($this->category['title']);?></legend>
+						
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="title">Title</label>  
+							<div class="col-md-7">
+								<?php 
+								echo $form->getElement('title')->setAttribs(array(
+									'class' => 'form-control input-md',
+									'placeholder' => 'enter category\'s title',
+									'id' => 'title',
+									'required' => 'required'
+								));
+								?>
+								<span class="help-block">min 3 max 255 characters</span>  
+							</div>
+							<div class="col-md-3">
+								<?php if ($form->getElement('title')->hasErrors()) {?>
+								<div class="has-error">
+									<?php foreach ($form->getElement('title')->getMessages() as $message) {?>
+									<p class="help-block"><?php echo $this->escape($message);?></p>
+									<?php }?>
+								</div>
+								<?php }?>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="category_leading_photo">Leading Photo</label>
+							<div class="col-md-7">
+								<div>
+									<a href="#" class="thumbnail">
+										<img src="<?php echo $this->categoryLeadingPhotoUrl($this->category);?>">
+									</a>
+								</div>
+								
+								<input type="file" name="category_leading_photo" id="category_leading_photo" class="form-control input-md">
+								<span class="help-block">change photo</span>
+							</div>
+							
+							<div class="col-md-3">
+								<?php if ($form->getElement('category_leading_photo')->hasErrors()) {?>
+								<div class="has-error">
+									<?php foreach ($form->getElement('category_leading_photo')->getMessages() as $message) {?>
+									<p class="help-block"><?php echo $this->escape($message);?></p>
+									<?php }?>
+								</div>
+								<?php }?>
+							</div>
+						</div>
+
+						<!-- Button (Double) -->
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="new_category_cancel"></label>
+							<div class="col-md-10 text-right">
+								<a href="<?php echo $this->url(array('controller' => 'admin_servicescategories', 'action' => 'index'), 'default', true);?>" id="new_photoGallery_cancel" name="new_category_cancel" class="btn btn-default">Cancel</a>
+								<button type="submit" id="new_photoGallery_submit" name="new_category_submit" class="btn btn-success">Save</button>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading text-right">
+				<div class="btn-group" role="group" aria-label="...">
+					<button
+						data-action="save-order"
+						class="btn btn-success"
+						style="display: none;"
+					>
+						<i class="glyphicon glyphicon-save"></i>
+						Save Order
+					</button>
+					<button
+						data-action="toggle-sort"
+						class="btn btn-default"
+					>
+						<i class="glyphicon glyphicon-list"></i>
+						Change Order
+					</button>
+					<button 
+						data-action="add-service"
+						class="btn btn-default"
+						><i class="glyphicon glyphicon-plus"></i> Add service</button>
+				</div>
+			</div>
+			<div class="panel-body">
+				<table id="rows-table" class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th></th>
+							<th class="text-center">Status</th>
+							<th>Title</th>
+							<th>Description</th>
+                                                        <th>Price</th>
+							<th class="text-center">#</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						foreach ($this->services as $service) {
+							if ($service['status'] == Application_Model_DbTable_CmsServices::STATUS_DISABLED) {
+							?>
+						<tr data-service-id="<?php echo $this->escape($service['id']);?>" class="danger">
+							<td class="text-center"><i data-action="sort" class="glyphicon glyphicon-list"  style="display: none; cursor: pointer;"></i></td>
+							<td class="text-center"><span class="badge alert-danger" title="disabled"><i class="glyphicon glyphicon-remove"></i></span></td>
+							<td><?php echo $this->escape($service['title']);?></td>
+							<td><?php echo $this->escape($service['description']);?></td>
+							<td><?php echo $this->escape($service['price']);?> din</td>
+                                                        <td class="text-center">
+								<div class="btn-group btn-group-sm" role="group" aria-label="...">
+									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-service-title="<?php echo $this->escape($service['title']);?>" data-service-description="<?php echo $this->escape($service['description']);?>" data-action="edit" type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></button>
+									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-action="enable" type="button" class="btn btn-default" title="enable"><i class="glyphicon glyphicon-ok"></i></button>
+									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
+								</div>
+							</td>
+						</tr>
+							<?php
+							} else {
+							?>
+						<tr data-photo-id="<?php echo $this->escape($service['id']);?>">
+							<td class="text-center"><i data-action="sort" class="glyphicon glyphicon-list" style="display: none; cursor: pointer;"></i></td>
+							<td class="text-center"><span class="badge alert-success" title="enabled"><i class="glyphicon glyphicon-ok"></i></span></td>
+							<td><?php echo $this->escape($service['title']);?></td>
+							<td><?php echo $this->escape($service['description']);?></td>
+							<td><?php echo $this->escape($service['price']);?></td>
+							<td class="text-center">
+								<div class="btn-group btn-group-sm" role="group" aria-label="...">
+									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-service-title="<?php echo $this->escape($service['title']);?>" data-service-description="<?php echo $this->escape($service['description']);?>" data-action="edit" type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></button>
+									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-action="disable" type="button" class="btn btn-default" title="disable"><i class="glyphicon glyphicon-remove"></i></button>
+									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
+								</div>
+							</td>
+						</tr>
+							<?php
+							}
+							?>
+						
+							<?php
+						}
+						?>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_services', 'action' => 'delete'), 'default', true);?>" id="delete-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
+	<input type="hidden" name="task" value="delete">
+	<input type="hidden" name="id" value="">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Delete service</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete <span name="name"></span>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</form><!-- /.modal -->
+
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_services', 'action' => 'disable'), 'default', true);?>" id="disable-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
+	<input type="hidden" name="task" value="disable">
+	<input type="hidden" name="id" value="">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Disable service</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to disable <span name="name"></span>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Disable</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</form><!-- /.modal -->
+
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_services', 'action' => 'enable'), 'default', true);?>" id="enable-warning-dialog" class="modal fade" tabindex="-1" role="dialog">
+	<input type="hidden" name="task" value="enable">
+	<input type="hidden" name="id" value="">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Enable service</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to enable <span name="name"></span>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Enable</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</form><!-- /.modal -->
+
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_services', 'action' => 'add'), 'default', true);?>" id="add-service-dialog" class="modal fade form-horizontal" tabindex="-1" role="dialog">
+	<input type="hidden" name="task" value="save">
+        <input type="hidden" name="service_category_id" value="<?php echo $this->escape($this->category['id']) ?>">
+  <div c
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add service</h4>
+      </div>
+      <fieldset class="modal-body">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="service_title">Title</label>
+			<div class="col-md-9">
+				<input type="text" name="title" id="service_title" class="form-control input-md">
+				<span class="help-block">Sevice title</span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="service_description">Description</label>
+			<div class="col-md-9">
+				<input type="text" name="description" id="service_description" class="form-control input-md">
+				<span class="help-block">Service description</span>
+			</div>
+		</div>
+          
+                <div class="form-group">
+			<label class="col-md-3 control-label" for="service_price">Price</label>
+			<div class="col-md-9">
+				<input type="text" name="price" id="service_description" class="form-control input-md">
+				<span class="help-block">Service price</span>
+			</div>
+		</div>
+		  
+      </fieldset>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-save"></i> Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</form><!-- /.modal -->
+
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_services', 'action' => 'edit'), 'default', true);?>" id="edit-service-dialog" class="modal fade form-horizontal" tabindex="-1" role="dialog">
+	<input type="hidden" name="task" value="update">
+	<input type="hidden" name="id" value="">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit service</h4>
+      </div>
+      <fieldset class="modal-body">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="service_title">Title</label>
+			<div class="col-md-9">
+				<input type="text" name="title" id="service_title" class="form-control input-md">
+				<span class="help-block">Service title</span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="service_description">Description</label>
+			<div class="col-md-9">
+				<input type="text" name="description" id="service_description" class="form-control input-md">
+				<span class="help-block">Service description</span>
+			</div>
+		</div>  
+		  
+      </fieldset>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-save"></i> Update</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</form><!-- /.modal -->
+
+<form method="post" action="<?php echo $this->url(array('controller' => 'admin_services', 'action' => 'updateorder'), 'default', true);?>" style="display: none;" id="save-order-form">
+	<input type="hidden" name="task" value="saveOrder">
+	<input type="hidden" name="sorted_ids" value="">
+        <input type="hidden" name="service_category_id" value="<?php echo $this->escape($this->category['id']); ?>">
+</form>
+<?php
+$this->headLink()->appendStylesheet($this->baseUrl('/admin/bower_components/jquery-ui-1.12.0/jquery-ui.min.css'));
+$this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/jquery-ui-1.12.0/jquery-ui.min.js'));
+?>
+<script>
+<?php $this->inlineScript()->captureStart();?>
+	
+	$('#rows-table').on('click', '[data-action="delete"]', function(e) {
+		
+		e.preventDefault();
+		e.stopPropagation();
+		
+		//calculate target element
+		var target = $(this).is('[data-action="delete"]') ? $(this) : $(this).closest('[data-action="delete"]');
+		
+		//get any attribute
+		var serviceId = target.attr('data-service-id');
+		
+		//get data- attributes
+		//var serviceId = target.data('service-id');
+		
+		
+		//set value for input field with name "id"
+		$('#delete-warning-dialog').find('[name="id"]').val(serviceId);
+		
+		$('#delete-warning-dialog').modal('show');
+	});
+	
+	$('#rows-table').on('click', '[data-action="disable"]', function(e) {
+		
+		e.preventDefault();
+		e.stopPropagation();
+		
+		//calculate target element
+		var target = $(this).is('[data-action="disable"]') ? $(this) : $(this).closest('[data-action="disable"]');
+		
+		//get any attribute
+		var serviceId = target.attr('data-service-id');
+		
+		//get data- attributes
+		//var serviceId = target.data('serviceId');
+		
+		
+		//set value for input field with name "id"
+		$('#disable-warning-dialog').find('[name="id"]').val(serviceId);
+		
+		$('#disable-warning-dialog').modal('show');
+	});
+	
+	$('#rows-table').on('click', '[data-action="enable"]', function(e) {
+		
+		e.preventDefault();
+		e.stopPropagation();
+		
+		//calculate target element
+		var target = $(this).is('[data-action="enable"]') ? $(this) : $(this).closest('[data-action="enable"]');
+		
+		//get any attribute
+		var serviceId = target.attr('data-service-id');
+		
+		//get data- attributes
+		//var serviceId = target.data('serviceId');
+		
+		
+		//set value for input field with name "id"
+		$('#enable-warning-dialog').find('[name="id"]').val(serviceId);
+		
+		$('#enable-warning-dialog').modal('show');
+	});
+	
+	$('#rows-table').on('click', '[data-action="edit"]', function(e) {
+		
+		e.preventDefault();
+		e.stopPropagation();
+		
+		//calculate target element
+		var target = $(this).is('[data-action="edit"]') ? $(this) : $(this).closest('[data-action="edit"]');
+		
+		//get any attribute
+		var serviceId = target.attr('data-service-id');
+		var serviceTitle = target.attr('data-service-title');
+		var serviceDescription = target.attr('data-service-description');
+		
+		//get data- attributes
+		//var serviceId = target.data('serviceId');
+		
+		var editServiceDialog = $('#edit-service-dialog');
+		
+		//set value for input field with name "id"
+		editServiceDialog.find('[name="id"]').val(serviceId);
+		editServiceDialog.find('[name="title"]').val(serviceTitle);
+		editServiceDialog.find('[name="description"]').val(serviceDescription);
+		
+		editServiceDialog.modal('show');
+	});
+	
+	$('[data-action="toggle-sort"]').on('click', function(e) {
+		
+		e.preventDefault();
+		e.stopPropagation();
+		
+		var target = $(this).is('[data-action="toggle-sort"]') ? $(this) : $(this).closest('[data-action="toggle-sort"]');
+		
+		var sortableTbody = $('#rows-table > tbody');
+		
+		if (target.hasClass('active')) {
+			
+			target.removeClass('active');
+			
+			target.html('<i class="glyphicon glyphicon-list"></i> Change Order');
+			
+			// destroy sortable functionallity
+			sortableTbody.sortable('destroy');
+			
+			// restore old html into tbody
+			sortableTbody.html(sortableTbody.data('oldHtml'));
+			
+			//hide "handle" for sorting, the icon in first column
+			sortableTbody.find('[data-action="sort"]').hide();
+			
+			//hide "Save Order" button
+			$('[data-action="save-order"]').hide();
+			
+		} else {
+			
+			target.addClass('active');
+			
+			//method html sets or gets html inside selected element
+			target.html('<i class="glyphicon glyphicon-remove"></i> Cancel');
+			
+			//save tbody html before sorting under key "oldHtml" into its data
+			sortableTbody.data('oldHtml', sortableTbody.html());
+			
+			//initialize sortable functionallity
+			sortableTbody.sortable({
+				handle: '[data-action="sort"]'
+			});
+			
+			//show "handle" for sorting, the icon in first column
+			sortableTbody.find('[data-action="sort"]').show();
+			
+			//show "Save Order" button
+			$('[data-action="save-order"]').show();
+		}
+	});
+	
+	$('[data-action="save-order"]').on('click', function(e) {
+		
+		e.preventDefault();
+		e.stopPropagation();
+		
+		var photoSortedIds = $('#rows-table > tbody').sortable('toArray', {
+			attribute: 'data-service-id'
+		});
+		
+		//select save order form
+		var saveOrderForm = $('#save-order-form');
+		
+		//find element with name "sorted_ids" in save order form and set its value
+		// with string in wich are sorted ids separated with coma (,)
+		// ex. "12,3,8,10,11,6,2,1,9,7,5,4"
+		saveOrderForm.find('[name="sorted_ids"]').val(photoSortedIds.join(','));
+		
+		// manually submit form by triggering "submit" event
+		saveOrderForm.trigger('submit');
+	});
+	
+	$('[data-action="add-service"]').on('click', function(e) {
+		
+		e.preventDefault();
+		e.stopPropagation();
+		
+		//select add photo dialog
+		var addServiceDialog = $('#add-service-dialog');
+		
+		addServiceDialog.modal('show');
+	});
+	
+<?php $this->inlineScript()->captureEnd();?>
+</script>
