@@ -12,7 +12,7 @@ $this->headMeta()->appendName('description', $sitemapPage['description']);
 				<!-- PAGE HEADER : begin -->
 				<div id="page-header">
 					<div class="container">
-						<h1>Kontakt</h1>
+						<h1><?php echo $this->escape($sitemapPage['title']); ?></h1>
 						<?php echo $this->breadcrumbs($sitemapPage); ?>
 					</div>
 				</div>

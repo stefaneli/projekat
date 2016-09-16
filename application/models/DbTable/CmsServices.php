@@ -149,6 +149,7 @@ class Application_Model_DbTable_CmsServices extends Zend_Db_Table_Abstract
                     switch ($field) {
                         
                         case "id":
+                        case "service_category_id":
                         case "title":
                         case "description":
                         case "price";

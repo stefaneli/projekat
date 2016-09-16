@@ -43,6 +43,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					
 				)
 			),
+                        
+                        'AppointmentPage' => array(
+				'title' => 'Appointment Page',
+				'subtypes' => array(
+					
+				)
+			),
                     
 //                        'PhotoGalleriesPage' => array(
 //				'title' => 'Photo Galleries Page',
@@ -58,6 +65,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                         'ServicesPage' => 1,
                         'ContactPage' => 1,
                         'GalleryPage' => 1,
+                        'AppointmentPage' => 1,
 //			'PhotoGalleriesPage' => 1,
 		);
 		
@@ -107,6 +115,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                         $sitemapPageMap['url'],
                                         array(
                                             'controller' => 'services',
+                                            'action' => 'index',
+                                            'sitemap_page_id' => $sitemapPageId
+                                                 )
+                                        ));
+                        }
+                        
+                        if($sitemapPageMap['type'] == 'AppointmentPage'){
+                                $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+                                        $sitemapPageMap['url'],
+                                        array(
+                                            'controller' => 'appointment',
                                             'action' => 'index',
                                             'sitemap_page_id' => $sitemapPageId
                                                  )

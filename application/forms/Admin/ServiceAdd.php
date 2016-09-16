@@ -24,7 +24,7 @@ class Application_Form_Admin_ServiceAdd extends Zend_Form
         $description = new Zend_Form_Element_Textarea('description');
         
         $description->addFilter('StringTrim')
-                ->setRequired(false);
+                ->setRequired(true);
         
         $this->addElement($description);
         

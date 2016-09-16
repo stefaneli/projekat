@@ -37,9 +37,54 @@ class ServicesController extends Zend_Controller_Action
         ) {
             throw new Zend_Controller_Router_Exception('Sitemap page is disabled.', 404);
         }
+        
+        $cmsServiceCategoriesTable = new Application_Model_DbTable_CmsServicesCategories();
+        
+        $categories = $cmsServiceCategoriesTable->search(array(
+            'filters' => array(
+                'status' => Application_Model_DbTable_CmsServicesCategories::STATUS_ENABLED
+            ),
+            'orders' => array(
+                'order_number' => 'ASC'
+            ),
+//            'limit' => 4,
+//            'page' => 2
+        ));
+        
+        $cmsServicesTable = new Application_Model_DbTable_CmsServices();
+        
+//        $services = $cmsServicesTable->search(array(
+//            'filters' => array(
+//                'status' => Application_Model_DbTable_CmsServices::STATUS_ENABLED
+//            ),
+//            'orders' => array(
+//                'order_number' => 'ASC'
+//            ),
+////            'limit' => 4,
+////            'page' => 2
+//        ));
+        
+        $services = array();
+        
+        foreach($categories as $category) {
+            $services[$category['id']] = $cmsServicesTable->search(array(
+            'filters' => array(
+                'status' => Application_Model_DbTable_CmsServices::STATUS_ENABLED,
+                'service_category_id' => $category['id']
+            ),
+            'orders' => array(
+                'order_number' => 'ASC'
+            ),
+        ));
+            
+            
+        }
+        
+        
           
         $this->view->sitemapPage = $sitemapPage;
-        
+        $this->view->services = $services;
+        $this->view->categories = $categories;
     }
 
 

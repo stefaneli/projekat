@@ -88,7 +88,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 						
 					} catch (Exception $ex) {
 						
-						$flashMessenger->addMessage('IndexSlide has been saved but error occured during image processing', 'errors');
+						$flashMessenger->addMessage('Index Slide has been saved but error occured during image processing', 'errors');
 
 						//redirect to same or another page
 						$redirector = $this->getHelper('Redirector');
