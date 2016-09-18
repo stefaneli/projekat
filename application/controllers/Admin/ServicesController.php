@@ -118,145 +118,162 @@ class Admin_ServicesController extends Zend_Controller_Action
     }
     
     public function editAction() {
-        
-        $request = $this->getRequest();
-        
-        $id = (int) $request->getParam('id');
-        
-        if($id <= 0){
-            
-            // Prekida se izvrsavanje programa i prikazuje se page not found
-            throw  new Zend_Controller_Router_Exception('Invalid service id: ' . $id, 404);
-        }
-        
-        $cmsServicesTable = new Application_Model_DbTable_CmsServices();
-        
-        $service = $cmsServicesTable->getServiceById($id);
-        
-        if(empty($service)){
-            throw new Zend_Controller_Router_Exception('No service is found with id: ' . $id, 404);
-        }
-        
-        $flashMessenger = $this->getHelper('FlashMessenger');
-        
-        $systemMessages = array(
-            'success' => $flashMessenger->getMessages('success'),
-            'errors' => $flashMessenger->getMessages('errors')
-        );
+		
+		$request = $this->getRequest();
+		
+		$id = (int) $request->getParam('id');
+		
+		if ($id <= 0) {
+			
+			//prekida se izvrsavanje programa i prikazuje se "Page not found"
+			throw new Zend_Controller_Router_Exception('Invalid service id: ' . $id, 404);
+		}
+		
+		$cmsServicesTable = new Application_Model_DbTable_CmsServices();
+		
+		$service = $cmsServicesTable->getServiceById($id);
+		
+		if (empty($service)) {
+			throw new Zend_Controller_Router_Exception('No service is found with id: ' . $id, 404);
+		}
+		
+		
+		$flashMessenger = $this->getHelper('FlashMessenger');
+		
+		$systemMessages = array(
+			'success' => $flashMessenger->getMessages('success'),
+			'errors' => $flashMessenger->getMessages('errors'),
+		);
+		
+		
+		$form = new Application_Form_Admin_ServiceAdd();
 
-        $form = new Application_Form_Admin_ServiceAdd();
+		//default form data
+		$form->populate($service);
 
-        //default form data
-        $form->populate($service);
+		if ($request->isPost() && $request->getPost('task') === 'update') {
 
-      
+			try {
 
-        if ($request->isPost() && $request->getPost('task') === 'update_service') {
+				//check form is valid
+				if (!$form->isValid($request->getPost())) {
+					throw new Application_Model_Exception_InvalidInput('Invalid data was sent for service');
+				}
 
-            try {
+				//get form data
+				$formData = $form->getValues();
+				
+				//Radimo update postojeceg zapisa u tabeli
+				
+				$cmsServicesTable->updateServiceById($service['id'], $formData);
+				
+				//set system message
+				$flashMessenger->addMessage('Service has been updated', 'success');
 
-                //check form is valid
-                if (!$form->isValid($request->getPost())) {
-                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for service.');
-                }
+				//redirect to same or another page
+				$redirector = $this->getHelper('Redirector');
+				$redirector->setExit(true)
+					->gotoRoute(array(
+						'controller' => 'admin_servicescategories',
+						'action' => 'edit',
+						'id' => $service['service_category_id']
+						), 'default', true);
+			} catch (Application_Model_Exception_InvalidInput $ex) {
+				$flashMessenger->addMessage($ex->getMessage(), 'errors');
 
-                //get form data
-                $formData = $form->getValues();
+				//redirect to same or another page
+				$redirector = $this->getHelper('Redirector');
+				$redirector->setExit(true)
+					->gotoRoute(array(
+						'controller' => 'admin_servicescategories',
+						'action' => 'edit',
+						'id' => $service['service_category_id']
+					), 'default', true);
+			}
+		}
+
+		$redirector = $this->getHelper('Redirector');
+		$redirector->setExit(true)
+			->gotoRoute(array(
+				'controller' => 'admin_servicescategories',
+				'action' => 'edit',
+				'id' => $service['service_category_id']
+			), 'default', true);
                 
-                // do actual task
-                //save to database etc
-             
-                 // Update postojeceg zapisa u tabeli
-                
-                $cmsServicesTable->updateServiceById($service['id'], $formData);
-                
-                
-                //set system message
-                $flashMessenger->addMessage('Service has been updated', 'success');
-
-                //redirect to same or another page
-                $redirector = $this->getHelper('Redirector');
-                $redirector->setExit(true)
-                        ->gotoRoute(array(
-                            'controller' => 'admin_services',
-                            'action' => 'index'
-                                ), 'default', true);
-            } catch (Application_Model_Exception_InvalidInput $ex) {
-                $systemMessages['errors'][] = $ex->getMessage();
-            }
-        }
-
-        $this->view->systemMessages = $systemMessages;
-        $this->view->form = $form;
-        
-        $this->view->service = $service;
-        
-    }
+                $this->view->systemMessages = $systemMessages;
+	}
     
     public function deleteAction() {
-        
-        $request = $this->getRequest();
-        
-        if(!$request->isPost() || $request->getPost('task') != 'delete'){
-            // request is not post
-            // or task is not 'delete'
-            // redirect to index
-            
-            $redirector = $this->getHelper('Redirector');
-            $redirector->setExit(true)
-                ->gotoRoute(array(
-                    'controller' => 'admin_services',
-                    'action' => 'index'
-                    ), 'default', true);
-        }
-        
-        $flashMessenger = $this->getHelper('FlashMessenger');
-        
-        try{
-
-                // read $_POST['id']
-            $id = (int) $request->getPost('id');
-
-            if($id <= 0){
+		
+		$request = $this->getRequest();
+		
+		if (!$request->isPost() || $request->getPost('task') != 'delete') {
+			// request is not post
+			// or task is not delete
+			//redirect to index page
+			
+			//redirect to same or another page
+			$redirector = $this->getHelper('Redirector');
+			$redirector->setExit(true)
+				->gotoRoute(array(
+					'controller' => 'admin_servicescategories',
+					'action' => 'index'
+					), 'default', true);
+		}
+		
+		$flashMessenger = $this->getHelper('FlashMessenger');
                 
-                throw new Application_Model_Exception_InvalidInput('Invalid member id: ' . $id);
+                $systemMessages = array(
+			'success' => $flashMessenger->getMessages('success'),
+			'errors' => $flashMessenger->getMessages('errors'),
+		);
+		
+		try {
+			
+			// read $_POST['id']
+			$id = (int) $request->getPost('id');
 
-                   }
+			if ($id <= 0) {
+				
+				throw new Application_Model_Exception_InvalidInput('Invalid service id: ' . $id);
+			}
 
-            $cmsServicesTable = new Application_Model_DbTable_CmsServices();
+			$cmsServicesTable = new Application_Model_DbTable_CmsServices();
 
-            $service = $cmsServicesTable->getServiceById($id);
+			$service = $cmsServicesTable->getServiceById($id);
 
-            if(empty($service)){
-                
-                throw new Application_Model_Exception_InvalidInput('No service is found with id: ' . $id);
-               
-            }
+			if (empty($service)) {
+				throw new Application_Model_Exception_InvalidInput('No service is found with id: ' . $id);
+			}
 
-            $cmsServicesTable->deleteService($service);
+			$cmsServicesTable->deleteService($service);
 
-            $flashMessenger->addMessage('Service ' . $service['title'] . ' has been deleted.', 'success');
+			$flashMessenger->addMessage('Service has been deleted', 'success');
 
-            $redirector = $this->getHelper('Redirector');
-                $redirector->setExit(true)
-                    ->gotoRoute(array(
-                        'controller' => 'admin_services',
-                        'action' => 'index'
-                        ), 'default', true);
+			//redirect to same or another page
+			$redirector = $this->getHelper('Redirector');
+			$redirector->setExit(true)
+				->gotoRoute(array(
+					'controller' => 'admin_servicescategories',
+                                        'action' => 'edit',
+                                        'id' => $service['service_category_id']
+				), 'default', true);
 
-
-        } catch (Application_Model_Exception_InvalidInput $ex) {
-            $flashMessenger->addMessage($ex->getMessage(), 'errors');
-            
-             $redirector = $this->getHelper('Redirector');
-                $redirector->setExit(true)
-                    ->gotoRoute(array(
-                        'controller' => 'admin_services',
-                        'action' => 'index'
-                        ), 'default', true);
-        }
-        
-    }
+		} catch (Application_Model_Exception_InvalidInput $ex) {
+			
+			$flashMessenger->addMessage($ex->getMessage(), 'errors');
+			
+			//redirect to same or another page
+			$redirector = $this->getHelper('Redirector');
+			$redirector->setExit(true)
+				->gotoRoute(array(
+					'controller' => 'admin_servicescategories',
+					'action' => 'index'
+				), 'default', true);
+		}
+		
+                $this->view->systemMessages = $systemMessages;
+	}
     
     public function disableAction() {
         
@@ -270,12 +287,17 @@ class Admin_ServicesController extends Zend_Controller_Action
             $redirector = $this->getHelper('Redirector');
             $redirector->setExit(true)
                 ->gotoRoute(array(
-                    'controller' => 'admin_services',
+                    'controller' => 'admin_servicescategories',
                     'action' => 'index'
                     ), 'default', true);
         }
         
         $flashMessenger = $this->getHelper('FlashMessenger');
+        
+        $systemMessages = array(
+			'success' => $flashMessenger->getMessages('success'),
+			'errors' => $flashMessenger->getMessages('errors'),
+		);
         
         try{
 
@@ -305,8 +327,9 @@ class Admin_ServicesController extends Zend_Controller_Action
             $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_services',
-                        'action' => 'index'
+                        'controller' => 'admin_servicescategories',
+                        'action' => 'edit',
+                        'id' => $service['service_category_id']
                         ), 'default', true);
 
 
@@ -316,10 +339,12 @@ class Admin_ServicesController extends Zend_Controller_Action
              $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_services',
+                        'controller' => 'admin_servicescategories',
                         'action' => 'index'
                         ), 'default', true);
         }
+        
+        $this->view->systemMessages = $systemMessages;
         
     }
     
@@ -335,12 +360,17 @@ class Admin_ServicesController extends Zend_Controller_Action
             $redirector = $this->getHelper('Redirector');
             $redirector->setExit(true)
                 ->gotoRoute(array(
-                    'controller' => 'admin_services',
-                    'action' => 'index'
+                    'controller' => 'admin_servicescategories',
+                        'action' => 'index'
                     ), 'default', true);
         }
         
         $flashMessenger = $this->getHelper('FlashMessenger');
+        
+        $systemMessages = array(
+			'success' => $flashMessenger->getMessages('success'),
+			'errors' => $flashMessenger->getMessages('errors'),
+		);
         
         try{
 
@@ -370,8 +400,9 @@ class Admin_ServicesController extends Zend_Controller_Action
             $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_services',
-                        'action' => 'index'
+                        'controller' => 'admin_servicescategories',
+                        'action' => 'edit',
+                        'id' => $service['service_category_id']
                         ), 'default', true);
 
 
@@ -381,16 +412,33 @@ class Admin_ServicesController extends Zend_Controller_Action
              $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_services',
-                        'action' => 'index'
+                        'controller' => 'admin_servicescategories',
+                        'action' => 'index',
                         ), 'default', true);
         }
         
+        $this->view->systemMessages = $systemMessages;
     }
     
     public function updateorderAction() {
        
         $request = $this->getRequest();
+        
+        $serviceCategoryId = (int) $request->getParam('service_category_id');
+        
+        if ($serviceCategoryId <= 0) {
+			
+			//prekida se izvrsavanje programa i prikazuje se "Page not found"
+			throw new Zend_Controller_Router_Exception('Invalid category id: ' . $serviceCategoryId, 404);
+		}
+                
+        $cmsServicesCategoriesTable = new Application_Model_DbTable_CmsServicesCategories();
+        
+        $category = $cmsServicesCategoriesTable->getServiceCategoryById($serviceCategoryId);
+        
+        if (empty($category)) {
+			throw new Zend_Controller_Router_Exception('No category is found with id: ' . $serviceCategoryId, 404);
+		}
         
         if(!$request->isPost() || $request->getPost('task') != 'saveOrder'){
             // request is not post
@@ -400,12 +448,17 @@ class Admin_ServicesController extends Zend_Controller_Action
             $redirector = $this->getHelper('Redirector');
             $redirector->setExit(true)
                 ->gotoRoute(array(
-                    'controller' => 'admin_services',
+                    'controller' => 'admin_servicescategories',
                     'action' => 'index'
                     ), 'default', true);
         }
         
         $flashMessenger = $this->getHelper('FlashMessenger');
+        
+        $systemMessages = array(
+			'success' => $flashMessenger->getMessages('success'),
+			'errors' => $flashMessenger->getMessages('errors'),
+		);
         
         try{
             
@@ -432,8 +485,9 @@ class Admin_ServicesController extends Zend_Controller_Action
              $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_services',
-                        'action' => 'index'
+                        'controller' => 'admin_servicescategories',
+                        'action' => 'edit',
+                        'id' => $category['id']
                         ), 'default', true);
             
         } catch (Application_Model_Exception_InvalidInput $ex) {
@@ -442,10 +496,12 @@ class Admin_ServicesController extends Zend_Controller_Action
              $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_services',
+                        'controller' => 'admin_servicescategories',
                         'action' => 'index'
                         ), 'default', true);
         }
+        
+        $this->view->systemMessages = $systemMessages;
     }
     
     public function dashboardAction() {

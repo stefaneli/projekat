@@ -1,3 +1,10 @@
+<?php
+
+$categories = $this->categories;
+$photos = $this->photos;
+
+?>
+
 <!-- MAIN SLIDER : begin -->
 			<div id="main-slider" class="m-has-hover-stop" data-interval="8000">
 				<div class="slide-list">
@@ -70,9 +77,9 @@
 							<!-- SECTION HEADER : begin -->
 							<header>
 								<div class="container">
-									<h2>Our Services</h2>
-									<p class="subtitle">We offer a wide range of beauty services</p>
-									<p class="more"><a href="services.html" class="c-button m-type-2">See all Services</a></p>
+									<h2>Nase usluge</h2>
+									<p class="subtitle">Nudimo Vam širok opseg usluga</p>
+									<p class="more"><a href="<?php echo $this->sitemapPageUrl(5); ?>" class="c-button m-type-2">Pogledajte sve naše usluge</a></p>
 								</div>
 							</header>
 							<!-- SECTION HEADER : end -->
@@ -81,81 +88,26 @@
 							<div class="c-service-list m-paginated" data-items="4" data-items-desktop="4" data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
 								<div class="container">
 									<div class="service-list-inner">
+                                                                            <?php foreach($categories as $category) { ?>
 										<div class="service-list-item">
 
 											<!-- SERVICE : begin -->
 											<div class="c-service">
 												<div class="service-image">
-													<a href="services.html#cosmetics"><img src="images/service_01.jpg" alt=""></a>
+                                                                                                    <a href="<?php echo $this->sitemapPageUrl(5); ?>#<?php echo $this->escape($category['title']);?>"><img src="<?php echo $this->categoryLeadingPhotoUrl($category);?>" alt="<?php echo $this->escape($category['title']);?>"></a>
 												</div>
-												<h3 class="service-title"><a href="services.html#cosmetics">Cosmetics</a></h3>
-												<div class="service-description">
+												<h3 class="service-title"><a href="<?php echo $this->sitemapPageUrl(5); ?>#<?php echo $this->escape($category['title']);?>"><?php echo $this->escape($category['title']);?></a></h3>
+<!--												<div class="service-description">
 													<p>Facials, Eyebrow & Eyelashes, Microdermabrasion, Acne Treatments, Anti-Aging</p>
-												</div>
+												</div>-->
 											</div>
 											<!-- SERVICE : end -->
 
 										</div>
-										<div class="service-list-item">
-
-											<!-- SERVICE : begin -->
-											<div class="c-service">
-												<div class="service-image">
-													<a href="services.html#hairdressing"><img src="images/service_02.jpg" alt=""></a>
-												</div>
-												<h3 class="service-title"><a href="services.html#hairdressing">Hairdressing</a></h3>
-												<div class="service-description">
-													<p>Wash, Cut & Finish, Blow Dries, Hair Colouring & Highlights, Evening Hairdressing</p>
-												</div>
-											</div>
-											<!-- SERVICE : end -->
-
-										</div>
-										<div class="service-list-item">
-
-											<!-- SERVICE : begin -->
-											<div class="c-service">
-												<div class="service-image">
-													<a href="services.html#body-treatments"><img src="images/service_03.jpg" alt=""></a>
-												</div>
-												<h3 class="service-title"><a href="services.html#body-treatments">Body Treatments</a></h3>
-												<div class="service-description">
-													<p>Body Wraps, Body Exfoliation Treatments, Cellulite Treatments, Lipo Laser, Depilation</p>
-												</div>
-											</div>
-											<!-- SERVICE : end -->
-
-										</div>
-										<div class="service-list-item">
-
-											<!-- SERVICE : begin -->
-											<div class="c-service">
-												<div class="service-image">
-													<a href="services.html#massages"><img src="images/service_04.jpg" alt=""></a>
-												</div>
-												<h3 class="service-title"><a href="services.html#massages">Massages</a></h3>
-												<div class="service-description">
-													<p>Exotic Massages, Swedish Massage, Hot Stone Massage, Aromatherapy Massage</p>
-												</div>
-											</div>
-											<!-- SERVICE : end -->
-
-										</div>
-										<div class="service-list-item">
-
-											<!-- SERVICE : begin -->
-											<div class="c-service">
-												<div class="service-image">
-													<a href="services.html"><img src="images/service_05.jpg" alt=""></a>
-												</div>
-												<h3 class="service-title"><a href="services.html">Nails</a></h3>
-												<div class="service-description">
-													<p>Nail Art, Paraffin Wax Treatment, Shellac Manicure, Gel Nails, French Manicure</p>
-												</div>
-											</div>
-											<!-- SERVICE : end -->
-
-										</div>
+                                                                            
+                                                                            <?php } ?>
+                                                                            
+										
 									</div>
 								</div>
 							</div>
@@ -170,9 +122,9 @@
 							<!-- SECTION HEADER : begin -->
 							<header>
 								<div class="container">
-									<h2>Gallery</h2>
-									<p class="subtitle">See how it looks inside our studio</p>
-									<p class="more"><a href="gallery.html" class="c-button m-type-2">Enter Gallery</a></p>
+									<h2>Galerija</h2>
+									<p class="subtitle">Pogledajte neke od nasih slika</p>
+									<p class="more"><a href="<?php echo $this->sitemapPageUrl(2); ?>" class="c-button m-type-2">Poseti galeriju</a></p>
 								</div>
 							</header>
 							<!-- SECTION HEADER : end -->
@@ -180,151 +132,17 @@
 							<!-- GALLERY : begin -->
 							<div class="c-gallery m-paginated" data-items="4" data-items-desktop="4" data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
 								<div class="thumb-list">
-									<div class="thumb"><a href="images/gallery_01.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_01.jpg" alt=""></a></div>
-									<div class="thumb"><a href="images/gallery_02.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_02.jpg" alt=""></a></div>
-									<div class="thumb"><a href="images/gallery_03.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_03.jpg" alt=""></a></div>
-									<div class="thumb"><a href="images/gallery_04.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_04.jpg" alt=""></a></div>
-									<div class="thumb"><a href="images/gallery_05.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_05.jpg" alt=""></a></div>
-									<div class="thumb"><a href="images/gallery_06.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_06.jpg" alt=""></a></div>
-									<div class="thumb"><a href="images/gallery_07.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_07.jpg" alt=""></a></div>
-									<div class="thumb"><a href="images/gallery_08.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_08.jpg" alt=""></a></div>
-								</div>
+                                                                    <?php foreach($photos as $photo) { ?>
+									<div class="thumb"><a href="<?php echo $this->photoUrl($photo);?>" class="lightbox" data-lightbox-group="gallery"><img src="<?php echo $this->photoUrl($photo);?>" alt="<?php echo $this->escape($photo['title']);?>"></a></div>
+									
+                                                                    <?php } ?>
+                                                               </div>
 							</div>
 							<!-- GALLERY : end -->
 
 						</section>
 						<!-- GALLERY SECTION : end -->
 
-						<!-- BLOG SECTION : begin -->
-						<section>
-
-							<!-- SECTION HEADER : begin -->
-							<header>
-								<div class="container">
-									<h2>Blog</h2>
-									<p class="subtitle">Read about latest health trends</p>
-									<p class="more"><a href="blog.html" class="c-button m-type-2">Read Blog</a></p>
-								</div>
-							</header>
-							<!-- SECTION HEADER : end -->
-
-							<div class="container">
-								<div class="row">
-									<div class="col-sm-3">
-
-										<!-- ARTICLE : begin -->
-										<article class="c-article">
-											<div class="article-image"><a href="blog-image.html"><img src="images/article_thumb_01.jpg" alt=""></a></div>
-											<h3 class="article-title"><a href="blog-image.html">Far far away, behind the word mountains</a></h3>
-										</article>
-										<!-- ARTICLE : end -->
-
-									</div>
-									<div class="col-sm-3">
-
-										<!-- ARTICLE : begin -->
-										<article class="c-article">
-											<div class="article-image"><a href="blog-image.html"><img src="images/article_thumb_02.jpg" alt=""></a></div>
-											<h3 class="article-title"><a href="blog-image.html">The Big Oxmox advised her not to do so</a></h3>
-										</article>
-										<!-- ARTICLE : end -->
-
-									</div>
-									<div class="col-sm-3">
-
-										<!-- ARTICLE : begin -->
-										<article class="c-article">
-											<div class="article-image"><a href="blog-image.html"><img src="images/article_thumb_03.jpg" alt=""></a></div>
-											<h3 class="article-title"><a href="blog-image.html">A small river named Duden flows by their place</a></h3>
-										</article>
-										<!-- ARTICLE : end -->
-
-									</div>
-									<div class="col-sm-3">
-
-										<!-- ARTICLE : begin -->
-										<article class="c-article">
-											<div class="article-image"><a href="blog-image.html"><img src="images/article_thumb_04.jpg" alt=""></a></div>
-											<h3 class="article-title"><a href="blog-image.html">Right at the coast of the Semantics</a></h3>
-										</article>
-										<!-- ARTICLE : end -->
-
-									</div>
-								</div>
-							</div>
-
-						</section>
-						<!-- BLOG SECTION : end -->
-
-						<!-- TESTIMONIALS SECTION : begin -->
-						<section>
-
-							<!-- SECTION HEADER : begin -->
-							<header>
-								<div class="container">
-									<h2>Our Clients</h2>
-									<p class="subtitle">Read why they love us so much</p>
-									<p class="more"><a href="contact.html" class="c-button m-type-2">Become Our Client</a></p>
-								</div>
-							</header>
-							<!-- SECTION HEADER : end -->
-
-							<!-- TESTIMONIAL LIST : begin -->
-							<div class="c-testimonial-list m-paginated">
-								<div class="container">
-									<div class="testimonial-list-inner">
-										<div class="testimonial-list-item">
-
-											<!-- TESTIMONIAL : begin -->
-											<div class="c-testimonial m-has-portrait">
-												<div class="testimonial-inner">
-													<p class="testimonial-portrait"><span><img src="images/client_01.jpg" alt=""></span></p>
-													<blockquote>
-														<p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero.</p>
-														<footer><strong>Floor Simons</strong>, Startup CEO</footer>
-													</blockquote>
-												</div>
-											</div>
-											<!-- TESTIMONIAL : end -->
-
-										</div>
-										<div class="testimonial-list-item">
-
-											<!-- TESTIMONIAL : begin -->
-											<div class="c-testimonial m-has-portrait">
-												<div class="testimonial-inner">
-													<p class="testimonial-portrait"><span><img src="images/client_02.jpg" alt=""></span></p>
-													<blockquote>
-														<p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean imperdiet.</p>
-														<footer><strong>Nikki Neil</strong>, Blogger</footer>
-													</blockquote>
-												</div>
-											</div>
-											<!-- TESTIMONIAL : end -->
-
-										</div>
-										<div class="testimonial-list-item">
-
-											<!-- TESTIMONIAL : begin -->
-											<div class="c-testimonial m-has-portrait">
-												<div class="testimonial-inner">
-													<p class="testimonial-portrait"><span><img src="images/client_03.jpg" alt=""></span></p>
-													<blockquote>
-														<p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Aenean imperdiet. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Nam quam nunc.</p>
-														<footer><strong>Tarja Lee</strong>, Writer</footer>
-													</blockquote>
-												</div>
-											</div>
-											<!-- TESTIMONIAL : end -->
-
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- TESTIMONIAL LIST : end -->
-
-						</section>
-						<!-- TESTIMONIALS SECTION : end -->
 
 						<!-- BRANDS SECTION : begin -->
 						<section>

@@ -89,9 +89,8 @@ class Application_Model_DbTable_CmsPhotos extends Zend_Db_Table_Abstract
 		$photo = $this->getPhotoById($id);
 		
 		$this->update(array(
-			'order_number' => new Zend_Db_Expr('order_number - 1')
-		),
-		'order_number > ' . $photo['order_number'] . ' AND photo_gallery_id = ' . $photo['photo_gallery_id']
+			'order_number' => new Zend_Db_Expr('order_number - 1')),
+                        'order_number > ' . $photo['order_number'] . ' AND photo_gallery_id = ' . $photo['photo_gallery_id']
 		);
 		
 		$this->delete('id = ' . $id);

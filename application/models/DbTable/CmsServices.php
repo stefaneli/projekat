@@ -77,7 +77,8 @@ class Application_Model_DbTable_CmsServices extends Zend_Db_Table_Abstract
          */
         public function deleteService($service){
             
-            $this->update(array('order_number' => new Zend_Db_Expr('order_number -  1')), 'order_number > ' . $service['order_number']); 
+            $this->update(array('order_number' => new Zend_Db_Expr('order_number -  1')),
+                                'order_number > ' . $service['order_number'] . ' AND service_category_id = ' . $service['service_category_id']); 
             
             $this->delete('id=' . $service['id']);
         }

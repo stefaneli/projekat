@@ -90,8 +90,8 @@ $form->setElementDecorators(array('ViewHelper'));
 						<div class="form-group">
 							<label class="col-md-2 control-label" for="new_category_cancel"></label>
 							<div class="col-md-10 text-right">
-								<a href="<?php echo $this->url(array('controller' => 'admin_servicescategories', 'action' => 'index'), 'default', true);?>" id="new_photoGallery_cancel" name="new_category_cancel" class="btn btn-default">Cancel</a>
-								<button type="submit" id="new_photoGallery_submit" name="new_category_submit" class="btn btn-success">Save</button>
+								<a href="<?php echo $this->url(array('controller' => 'admin_servicescategories', 'action' => 'index'), 'default', true);?>" id="new_category_cancel" name="new_category_cancel" class="btn btn-default">Cancel</a>
+								<button type="submit" id="new_category_submit" name="new_category_submit" class="btn btn-success">Save</button>
 							</div>
 						</div>
 
@@ -144,14 +144,14 @@ $form->setElementDecorators(array('ViewHelper'));
 							if ($service['status'] == Application_Model_DbTable_CmsServices::STATUS_DISABLED) {
 							?>
 						<tr data-service-id="<?php echo $this->escape($service['id']);?>" class="danger">
-							<td class="text-center"><i data-action="sort" class="glyphicon glyphicon-list"  style="display: none; cursor: pointer;"></i></td>
+							<td class="text-center"><i data-action="sort" class="glyphicon glyphicon-move"  style="display: none; cursor: pointer;"></i></td>
 							<td class="text-center"><span class="badge alert-danger" title="disabled"><i class="glyphicon glyphicon-remove"></i></span></td>
 							<td><?php echo $this->escape($service['title']);?></td>
 							<td><?php echo $this->escape($service['description']);?></td>
 							<td><?php echo $this->escape($service['price']);?> din</td>
                                                         <td class="text-center">
 								<div class="btn-group btn-group-sm" role="group" aria-label="...">
-									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-service-title="<?php echo $this->escape($service['title']);?>" data-service-description="<?php echo $this->escape($service['description']);?>" data-action="edit" type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></button>
+									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-service-title="<?php echo $this->escape($service['title']);?>" data-service-price="<?php echo $this->escape($service['price']);?>" data-service-description="<?php echo $this->escape($service['description']);?>" data-action="edit" type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></button>
 									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-action="enable" type="button" class="btn btn-default" title="enable"><i class="glyphicon glyphicon-ok"></i></button>
 									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
 								</div>
@@ -160,15 +160,15 @@ $form->setElementDecorators(array('ViewHelper'));
 							<?php
 							} else {
 							?>
-						<tr data-photo-id="<?php echo $this->escape($service['id']);?>">
-							<td class="text-center"><i data-action="sort" class="glyphicon glyphicon-list" style="display: none; cursor: pointer;"></i></td>
+						<tr data-service-id="<?php echo $this->escape($service['id']);?>">
+							<td class="text-center"><i data-action="sort" class="glyphicon glyphicon-move" style="display: none; cursor: pointer;"></i></td>
 							<td class="text-center"><span class="badge alert-success" title="enabled"><i class="glyphicon glyphicon-ok"></i></span></td>
 							<td><?php echo $this->escape($service['title']);?></td>
 							<td><?php echo $this->escape($service['description']);?></td>
-							<td><?php echo $this->escape($service['price']);?></td>
+							<td><?php echo $this->escape($service['price']);?> din</td>
 							<td class="text-center">
 								<div class="btn-group btn-group-sm" role="group" aria-label="...">
-									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-service-title="<?php echo $this->escape($service['title']);?>" data-service-description="<?php echo $this->escape($service['description']);?>" data-action="edit" type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></button>
+									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-service-title="<?php echo $this->escape($service['title']);?>" data-service-price="<?php echo $this->escape($service['price']);?>" data-service-description="<?php echo $this->escape($service['description']);?>" data-action="edit" type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></button>
 									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-action="disable" type="button" class="btn btn-default" title="disable"><i class="glyphicon glyphicon-remove"></i></button>
 									<button data-service-id="<?php echo $this->escape($service['id']);?>" data-action="delete" type="button" class="btn btn-default" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
 								</div>
@@ -199,7 +199,7 @@ $form->setElementDecorators(array('ViewHelper'));
         <h4 class="modal-title">Delete service</h4>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to delete <span name="name"></span>?</p>
+        <p>Are you sure you want to delete the service?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -279,7 +279,7 @@ $form->setElementDecorators(array('ViewHelper'));
                 <div class="form-group">
 			<label class="col-md-3 control-label" for="service_price">Price</label>
 			<div class="col-md-9">
-				<input type="text" name="price" id="service_description" class="form-control input-md">
+				<input type="text" name="price" id="service_price" class="form-control input-md">
 				<span class="help-block">Service price</span>
 			</div>
 		</div>
@@ -318,7 +318,14 @@ $form->setElementDecorators(array('ViewHelper'));
 				<span class="help-block">Service description</span>
 			</div>
 		</div>  
-		  
+          
+                <div class="form-group">
+			<label class="col-md-3 control-label" for="service_price">Price</label>
+			<div class="col-md-9">
+				<input type="text" name="price" id="service_price" class="form-control input-md">
+				<span class="help-block">Service price</span>
+			</div>
+		</div>
       </fieldset>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -415,6 +422,7 @@ $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/jquery
 		var serviceId = target.attr('data-service-id');
 		var serviceTitle = target.attr('data-service-title');
 		var serviceDescription = target.attr('data-service-description');
+                var servicePrice = target.attr('data-service-price');
 		
 		//get data- attributes
 		//var serviceId = target.data('serviceId');
@@ -425,6 +433,7 @@ $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/jquery
 		editServiceDialog.find('[name="id"]').val(serviceId);
 		editServiceDialog.find('[name="title"]').val(serviceTitle);
 		editServiceDialog.find('[name="description"]').val(serviceDescription);
+                editServiceDialog.find('[name="price"]').val(servicePrice);
 		
 		editServiceDialog.modal('show');
 	});
