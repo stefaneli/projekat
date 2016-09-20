@@ -45,6 +45,14 @@ class PhotogalleriesController extends Zend_Controller_Action
 	
 	public function indexAction() {
 		$request = $this->getRequest();
+                
+                $flashMessenger = $this->getHelper('FlashMessenger');
+		
+		$systemMessages = array(
+			
+			'success' => $flashMessenger->getMessages('success'),
+			'errors' => $flashMessenger->getMessages('errors')
+		);
 		
 		
 		/******** Get PhotoGalleriesPage from sitemap *******/
@@ -97,6 +105,7 @@ class PhotogalleriesController extends Zend_Controller_Action
 		$this->view->sitemapPage = $sitemapPage;
 		$this->view->photoGallery = $photoGallery;
 		$this->view->photos = $photos;
+                $this->view->systemMessages = $systemMessages;
 	}
 }
 

@@ -2,7 +2,10 @@
 
 $sitemapPage = $this->sitemapPage;
 $this->headTitle($sitemapPage['title']);
-$this->headMeta()->appendName('description', $sitemapPage['description']);
+$this->headMeta()->appendName('Description', $sitemapPage['description']);
+$this->headMeta()->appendName('Keywords', 'manikir, pedikir, nokti, depilacija, masaža, solarijum');
+$form = $this->form;
+$form->setElementDecorators(array('ViewHelper'));
 
 ?>
 
@@ -91,34 +94,53 @@ $this->headMeta()->appendName('description', $sitemapPage['description']);
 
 							<!-- FORM SECTION : begin -->
 							<section>
-
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <?php echo $this->systemMessagesFront($this->systemMessages);?>
+                                                                </div>
+                                                            </div>
 								<h2>Pošaljite nam poruku</h2>
 
 								<div class="row">
 									<div class="col-lg-8">
 
 										<!-- CONTACT FORM : begin -->
-										<form id="contact-form" class="default-form m-ajax-form" action="http://demos.volovar.net/beautyspot.html/demo/ajax/contact-form.php" method="post" >
+										<form id="contact-form" class="default-form m-ajax-form" method="post" >
 											<input type="hidden" name="contact-form">
 
 											<!-- FORM VALIDATION ERROR MESSAGE : begin -->
-											<p class="c-alert-message m-warning m-validation-error" style="display: none;"><i class="ico fa fa-exclamation-circle"></i>Please fill in all required (*) fields.</p>
+											<p class="c-alert-message m-warning m-validation-error" style="display: none;"><i class="ico fa fa-exclamation-circle"></i>Molimo Vas popunite sva obavezna (*) polja.</p>
 											<!-- FORM VALIDATION ERROR MESSAGE : end -->
 
 											<!-- SENDING REQUEST ERROR MESSAGE : begin -->
 											<p class="c-alert-message m-warning m-request-error" style="display: none;"><i class="ico fa fa-exclamation-circle"></i>There was a connection problem. Try again later.</p>
 											<!-- SENDING REQUEST ERROR MESSAGE : end -->
-
+                                                                                        
 											<div class="row">
 												<div class="col-sm-6">
 
 													<!-- NAME FIELD : begin -->
 													<div class="form-field">
 														<label for="contact-name">Vaše ime <span>*</span></label>
-														<input id="contact-name" name="contact-name" class="m-required">
+                                                                                                                 <?php
+                                                                                                                echo $form->getElement('first_name')->setAttribs(array(
+                                                                                                                    'class' => 'm-required',
+                                                                                                                    'placeholder' => 'Vaše ime',
+                                                                                                                    'id' => 'contact-name',
+                                                                                                                    'required' => 'required'
+                                                                                                                ));
+                                                                                                                ?>
 													</div>
 													<!-- NAME FIELD : end -->
-
+                                                                                                        <br>
+                                                                                                         <?php if ($form->getElement('first_name')->hasErrors()) { ?>
+                                                                                                                        <p class="c-alert-message m-warning">
+                                                                                                                            <?php foreach ($form->getElement('first_name')->getMessages() as $message) { ?>
+                                                                                                                                <i class="ico fa fa-exclamation-circle"></i><?php echo $this->escape($message); ?>
+                                                                                                                            <?php } ?>
+                                                                                                                         </p>
+                                                                                                                    <?php } ?>
+                                                                                                        
 													<!-- EMAIL FIELD : begin -->
 													<div class="form-field">
 														<label for="contact-email">Vaša Email Adresa <span>*</span></label>

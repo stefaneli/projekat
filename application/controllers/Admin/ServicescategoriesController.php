@@ -84,7 +84,7 @@ class Admin_ServicescategoriesController extends Zend_Controller_Action
                         
                         $categoryPhoto->fit(360, 270);
                         
-                        $categoryPhoto->save(PUBLIC_PATH . '/uploads/categories/' . $categoryId . '.jpg');
+                        $categoryPhoto->save(PUBLIC_PATH . '/uploads/usluge-salon-lepote-mirijevo/salon-lepote-mirijevo-' . $categoryId . '.jpg');
                         
                         
                         

@@ -6,6 +6,14 @@ class StaticpageController extends Zend_Controller_Action
 		
 		
 		$request = $this->getRequest();
+                
+                $flashMessenger = $this->getHelper('FlashMessenger');
+		
+		$systemMessages = array(
+			
+			'success' => $flashMessenger->getMessages('success'),
+			'errors' => $flashMessenger->getMessages('errors')
+		);
 		
 		$sitemapPageId = (int) $request->getParam('sitemap_page_id');
 		
@@ -32,5 +40,6 @@ class StaticpageController extends Zend_Controller_Action
 		}
 		
 		$this->view->sitemapPage = $sitemapPage;
+                $this->view->systemMessages = $systemMessages;
 	}
 }

@@ -11,6 +11,21 @@ class ContactController extends Zend_Controller_Action
     public function indexAction()
     {
         $request = $this->getRequest();
+        
+        $flashMessenger = $this->getHelper('FlashMessenger');
+		
+        $systemMessages = array(
+
+                'success' => $flashMessenger->getMessages('success'),
+                'errors' => $flashMessenger->getMessages('errors')
+        );
+        
+        $form = new Application_Form_Front_Contact();
+
+        //default form data
+        $form->populate(array(
+            
+        ));
 
 
         /*         * ****** Get PhotoGalleriesPage from sitemap ****** */
@@ -40,6 +55,10 @@ class ContactController extends Zend_Controller_Action
         }
           
         $this->view->sitemapPage = $sitemapPage;
+        
+        $this->view->systemMessages = $systemMessages;
+        
+        $this->view->form = $form;
     }
     
     

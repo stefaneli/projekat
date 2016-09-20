@@ -10,7 +10,15 @@ class ServicesController extends Zend_Controller_Action
 
     public function indexAction()
     {
-      $request = $this->getRequest();
+        $request = $this->getRequest();
+        
+        $flashMessenger = $this->getHelper('FlashMessenger');
+		
+        $systemMessages = array(
+
+                'success' => $flashMessenger->getMessages('success'),
+                'errors' => $flashMessenger->getMessages('errors')
+        );
 
 
         /*         * ****** Get PhotoGalleriesPage from sitemap ****** */
@@ -85,6 +93,7 @@ class ServicesController extends Zend_Controller_Action
         $this->view->sitemapPage = $sitemapPage;
         $this->view->services = $services;
         $this->view->categories = $categories;
+        $this->view->systemMessages = $systemMessages;
     }
 
 

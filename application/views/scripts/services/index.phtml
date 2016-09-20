@@ -4,7 +4,8 @@ $sitemapPage = $this->sitemapPage;
 $services = $this->services;
 $categories = $this->categories;
 $this->headTitle($sitemapPage['title']);
-$this->headMeta()->appendName('description', $sitemapPage['description']);
+$this->headMeta()->appendName('Description', $sitemapPage['description']);
+$this->headMeta()->appendName('Keywords', 'manikir, pedikir, nokti, depilacija, masaža, solarijum');
 
 ?>
 
@@ -40,7 +41,7 @@ $this->headMeta()->appendName('description', $sitemapPage['description']);
                                                                         
 									<div class="col-sm-2">
                                                         		<!-- CATEGORY IMAGE : begin -->
-										<p class="textalign-center margin-sides-auto max-width-180"><img src="<?php echo $this->categoryLeadingPhotoUrl($category);?>" class="rounded" alt="<?php echo $this->escape($category['title']);?>"></p>
+                                                                        <p class="textalign-center margin-sides-auto max-width-180"><img src="<?php echo $this->categoryLeadingPhotoUrl($category);?>" title="<?php echo $this->categoryLeadingPhotoTitle($category); ?>" class="rounded" alt="<?php echo $this->escape($category['title']);?>"></p>
 										<!-- CATEGORY IMAGE : end -->
 
 									</div>
