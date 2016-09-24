@@ -201,7 +201,7 @@ class Admin_MembersController extends Zend_Controller_Action
                         
                     } catch (Exception $ex) {
                         
-                        throw new Application_Model_Exception_InvalidInput('Error ocured during image processing');
+                        throw new Application_Model_Exception_InvalidInput('Error ocured during image processing'.$ex->getMessage());
                         
                     }
                     

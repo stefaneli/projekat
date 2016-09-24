@@ -103,7 +103,7 @@ class Admin_PhotosController extends Zend_Controller_Action
 						
 						$photoPhoto->fit(660, 495);
 						
-						$photoPhoto->save(PUBLIC_PATH . '/uploads/photo-galleries/photos/' . $photoId . '.jpg');
+						$photoPhoto->save(PUBLIC_PATH . '/uploads/photo-galleries/photos/salon-lepote-mirijevo-slika-' . $photoId . '.jpg');
 						
 					} catch (Exception $ex) {
 						

@@ -44,7 +44,7 @@ $this->headMeta()->appendName('Keywords', 'manikir, pedikir, nokti, depilacija, 
 						<div class="c-gallery">
 							<div class="thumb-list">
                                                             <?php foreach ($photos as $photo) { ?>
-								<div class="thumb"><a href="<?php echo $this->photoUrl($photo);?>" class="lightbox" data-lightbox-group="gallery"><img src="<?php echo $this->photoUrl($photo);?>" alt="<?php echo $photo['title']?>"></a></div>
+								<div class="thumb"><a href="<?php echo $this->photoUrl($photo);?>" class="lightbox" data-lightbox-group="gallery"><img src="<?php echo $this->photoUrl($photo);?>" title="<?php echo $this->categoryLeadingPhotoTitle($photo); ?>" alt="<?php echo $this->escape($photo['title'])?>"></a></div>
 							<?php  } ?>
                                                         </div>
 						</div>

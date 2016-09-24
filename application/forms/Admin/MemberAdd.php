@@ -10,7 +10,6 @@ class Application_Form_Admin_MemberAdd extends Zend_Form
         //$firstName->addValidator(new Zend_Validate_StringLength(array('min' => 3, 'max' => 255)));
         
         $firstName->addFilter('StringTrim')
-                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
                 ->setRequired(true);
         
         $this->addElement($firstName);
@@ -19,13 +18,11 @@ class Application_Form_Admin_MemberAdd extends Zend_Form
         
         $lastName = new Zend_Form_Element_Text('last_name');
         $lastName->addFilter('StringTrim')
-                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
                 ->setRequired(true);
         $this->addElement($lastName);
         
         $workTitle = new Zend_Form_Element_Text('work_title');
         $workTitle->addFilter('StringTrim')
-                ->addValidator('StringLength', false, array('min' => 3, 'max' => 255))
                 ->setRequired(false);
         $this->addElement($workTitle);
         
@@ -42,7 +39,8 @@ class Application_Form_Admin_MemberAdd extends Zend_Form
         
         $memberPhoto = new Zend_Form_Element_File('member_photo');
         $memberPhoto->addValidator('Count', true, 1) 
-                ->addValidator('MimeType', true, array('image/gif', 'image/jpeg', 'image/png'))
+                ->addValidator('MimeType', true, array('image/gif', 'image/jpeg', 'image/jpg', 'image/png'))
+                //->addValidator('Extension', false, array('gif', 'jpeg', 'jpg', 'png'))
                 ->addValidator('ImageSize', false, array(
                     'minwidth' => 150,
                     'maxwidth' => 2000,

@@ -1,7 +1,9 @@
 <?php
 
+
 class ContactController extends Zend_Controller_Action
 {
+    
 
     public function init()
     {
@@ -12,23 +14,23 @@ class ContactController extends Zend_Controller_Action
     {
         $request = $this->getRequest();
         
-        $flashMessenger = $this->getHelper('FlashMessenger');
-		
-        $systemMessages = array(
-
-                'success' => $flashMessenger->getMessages('success'),
-                'errors' => $flashMessenger->getMessages('errors')
-        );
-        
         $form = new Application_Form_Front_Contact();
 
         //default form data
         $form->populate(array(
             
         ));
+        
+        $flashMessenger = $this->getHelper('FlashMessenger');
+        
+        $systemMessages = array(
 
-
-        /*         * ****** Get PhotoGalleriesPage from sitemap ****** */
+                'success' => $flashMessenger->getMessages('success'),
+                'errors' => $flashMessenger->getMessages('errors')
+        );
+        
+        $systemMessagesForContact = 'init';
+        
         $sitemapPageId = (int) $request->getParam('sitemap_page_id');
 
         $this->view->activePage = $sitemapPageId;
@@ -53,9 +55,50 @@ class ContactController extends Zend_Controller_Action
         ) {
             throw new Zend_Controller_Router_Exception('Sitemap page is disabled.', 404);
         }
+        
+        if ($request->isPost() && $request->getPost('task') === 'contact') {
+	
+	try {
+		
+		//check form is valid
+		if (!$form->isValid($request->getPost())) {
+			throw new Application_Model_Exception_InvalidInput('Invalid form data was sent');
+		}
+		
+		//get form data
+		$formData = $form->getValues();
+		
+		$mailHelper = new Application_Model_Library_MailHelper();
+                
+                $fromEmail = $formData['email'];
+                $toEmail = 'bebeautymirijevo@gmail.com';
+                $fromName = $formData['first_name'];
+                $message = $formData['message'];
+                $subject = $formData['subject'];
+                
+                
+                $result = $mailHelper->sendMail($toEmail, $fromEmail, $fromName, $message, $subject);
+                
+                if(!$result) {
+                    $systemMessagesForContact = 'Error';
+                } else {
+                    $systemMessagesForContact = 'Success';
+                }
+                
+		
+		
+		
+	} catch (Application_Model_Exception_InvalidInput $ex) {
+		$systemMessages['errors'][] = $ex->getMessage();
+	}
+}
+
+        
+        
           
         $this->view->sitemapPage = $sitemapPage;
         
+        $this->view->systemMessagesForContact = $systemMessagesForContact;
         $this->view->systemMessages = $systemMessages;
         
         $this->view->form = $form;

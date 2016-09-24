@@ -23,7 +23,7 @@ class IndexController extends Zend_Controller_Action
 			'success' => $flashMessenger->getMessages('success'),
 			'errors' => $flashMessenger->getMessages('errors')
 		);
-        
+                
 		$cmsIndexSlidesDbTable = new Application_Model_DbTable_CmsIndexSlides();
 		
 		$indexSlides = $cmsIndexSlidesDbTable->search(array(

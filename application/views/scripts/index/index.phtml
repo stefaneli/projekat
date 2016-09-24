@@ -2,6 +2,7 @@
 
 $categories = $this->categories;
 $photos = $this->photos;
+$indexSlides =$this->indexSlides;
 
 ?>
 
@@ -10,14 +11,14 @@ $photos = $this->photos;
 				<div class="slide-list">
 
 					<!-- SLIDE 1 : begin -->
-					<div class="slide slide-1 m-bg-align-right" data-label="Welcome to BEAUTYSPOT" style="background-image: url( 'images/slide_01.jpg' );">
+					<div class="slide slide-1 m-bg-align-right" data-label="Welcome to BEAUTYSPOT" style="background-image: url( '/front/images/slide_01.jpg' );">
 						<div class="slide-bg">
 							<div class="container">
 								<div class="slide-inner">
 									<div class="slide-content various-content textalign-left valign-middle">
 
-										<h1>Welcome<br>to BEAUTYSPOT!</h1>
-										<h3>HTML Template for Beauty Salons,<br>Hairdressers, Wellness or Spa</h3>
+										<h1>Welcome<br>to Be Beauty!</h1>
+										<h3>Najbolji salon u kraju</h3>
 
 									</div>
 								</div>
@@ -27,14 +28,14 @@ $photos = $this->photos;
 					<!-- SLIDE 1 : end -->
 
 					<!-- SLIDE 2 : begin -->
-					<div class="slide slide-2 m-bg-align-left" data-label="20% off All Massages" style="background-image: url( 'images/slide_02.jpg' );">
+					<div class="slide slide-2 m-bg-align-left" data-label="20% off All Massages" style="background-image: url( '/front/images/slide_02.jpg' );">
 						<div class="slide-bg">
 							<div class="container">
 								<div class="slide-inner">
 									<div class="slide-content various-content textalign-right valign-middle">
 
 										<h2>20% Off<br>All Massages</h2>
-										<h3>This Friday Only!<br><a href="ajax/reservation-form.html" class="m-open-ajax-modal">Make a Reservation</a></h3>
+										<h3>This Friday Only!</h3>
 
 									</div>
 								</div>
@@ -44,7 +45,7 @@ $photos = $this->photos;
 					<!-- SLIDE 2 : end -->
 
 					<!-- SLIDE 3 : begin -->
-					<div class="slide slide-3 m-bg-align-right" data-label="Eshop Launched" style="background-image: url( 'images/slide_03.jpg' );">
+<!--					<div class="slide slide-3 m-bg-align-right" data-label="Eshop Launched" style="background-image: url( '/front/images/slide_03.jpg' );">
 						<div class="slide-bg">
 							<div class="container">
 								<div class="slide-inner">
@@ -57,7 +58,7 @@ $photos = $this->photos;
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>-->
 					<!-- SLIDE 3 : end -->
 
 				</div>
@@ -94,7 +95,7 @@ $photos = $this->photos;
 											<!-- SERVICE : begin -->
 											<div class="c-service">
 												<div class="service-image">
-                                                                                                    <a href="<?php echo $this->sitemapPageUrl(5); ?>#<?php echo $this->escape($category['title']);?>"><img src="<?php echo $this->categoryLeadingPhotoUrl($category);?>" alt="<?php echo $this->escape($category['title']);?>"></a>
+                                                                                                    <a href="<?php echo $this->sitemapPageUrl(5); ?>#<?php echo $this->escape($category['title']);?>"><img src="<?php echo $this->categoryLeadingPhotoUrl($category);?>" title="<?php echo $this->categoryLeadingPhotoTitle($category); ?>" alt="<?php echo $this->escape($category['title']);?>"></a>
 												</div>
 												<h3 class="service-title"><a href="<?php echo $this->sitemapPageUrl(5); ?>#<?php echo $this->escape($category['title']);?>"><?php echo $this->escape($category['title']);?></a></h3>
 <!--												<div class="service-description">
@@ -133,7 +134,7 @@ $photos = $this->photos;
 							<div class="c-gallery m-paginated" data-items="4" data-items-desktop="4" data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
 								<div class="thumb-list">
                                                                     <?php foreach($photos as $photo) { ?>
-									<div class="thumb"><a href="<?php echo $this->photoUrl($photo);?>" class="lightbox" data-lightbox-group="gallery"><img src="<?php echo $this->photoUrl($photo);?>" alt="<?php echo $this->escape($photo['title']);?>"></a></div>
+									<div class="thumb"><a href="<?php echo $this->photoUrl($photo);?>" class="lightbox" data-lightbox-group="gallery"><img src="<?php echo $this->photoUrl($photo);?>" title="<?php echo $this->categoryLeadingPhotoTitle($photo); ?>" alt="<?php echo $this->escape($photo['title']);?>"></a></div>
 									
                                                                     <?php } ?>
                                                                </div>
