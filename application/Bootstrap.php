@@ -164,26 +164,26 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                         }
 
 
-                        if ($sitemapPageMap['type'] == 'PhotoGalleriesPage') {
-				
-				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
-					$sitemapPageMap['url'],
-					array(
-						'controller' => 'photogalleries',
-						'action' => 'index',
-						'sitemap_page_id' => $sitemapPageId
-					)
-				));
-				
-				$router->addRoute('photo-gallery-route', new Zend_Controller_Router_Route(
-					$sitemapPageMap['url'] . '/:id/:photo_gallery_slug',
-					array(
-						'controller' => 'photogalleries',
-						'action' => 'gallery',
-						'sitemap_page_id' => $sitemapPageId
-					)
-				));
-			}
+//                        if ($sitemapPageMap['type'] == 'PhotoGalleriesPage') {
+//				
+//				$router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(
+//					$sitemapPageMap['url'],
+//					array(
+//						'controller' => 'photogalleries',
+//						'action' => 'index',
+//						'sitemap_page_id' => $sitemapPageId
+//					)
+//				));
+//				
+//				$router->addRoute('photo-gallery-route', new Zend_Controller_Router_Route(
+//					$sitemapPageMap['url'] . '/:id/:photo_gallery_slug',
+//					array(
+//						'controller' => 'photogalleries',
+//						'action' => 'gallery',
+//						'sitemap_page_id' => $sitemapPageId
+//					)
+//				));
+//			}
 		}
 	}
 }
