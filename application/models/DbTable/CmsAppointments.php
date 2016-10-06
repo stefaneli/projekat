@@ -111,7 +111,6 @@ class Application_Model_DbTable_CmsAppointments extends Zend_Db_Table_Abstract
                         case "first_name":
                         case "last_name":
                         case "phone":
-                        case "appointemnt_date_time":
                             
                             if($orderDirection === 'DESC'){
                                 $select->order($field . ' DESC');
@@ -179,7 +178,6 @@ class Application_Model_DbTable_CmsAppointments extends Zend_Db_Table_Abstract
                         case "first_name":
                         case "last_name":
                         case "phone":
-                        case "appointemnt_date_time":
                             
                             if(is_array($value)){
                                 $select->where($field . ' IN (?)', $value);
@@ -222,6 +220,14 @@ class Application_Model_DbTable_CmsAppointments extends Zend_Db_Table_Abstract
                                 $select->where('username != ?', $value);
                             }
                             
+                            break;
+                            
+                        case 'start':
+                                $select->where('start >= ?', $value);                            
+                            break;
+                        
+                        case 'end':
+                                $select->where('end <= ?', $value);                            
                             break;
                     }
                 }
