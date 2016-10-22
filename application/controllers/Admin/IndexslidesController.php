@@ -82,9 +82,9 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 						//open uploaded photo in temporary directory
 						$indexSlidePhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
 						
-						$indexSlidePhoto->fit(600, 400);
+						$indexSlidePhoto->fit(1400, 700);
 						
-						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/' . $indexSlideId . '.jpg');
+						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/salon-lepote-mirijevo-promocija-' . $indexSlideId . '.jpg');
 						
 					} catch (Exception $ex) {
 						
@@ -107,7 +107,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 				
 				
 				//set system message
-				$flashMessenger->addMessage('IndexSlide has been saved', 'success');
+				$flashMessenger->addMessage('Index Slide has been saved', 'success');
 
 				//redirect to same or another page
 				$redirector = $this->getHelper('Redirector');
@@ -134,7 +134,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 		if ($id <= 0) {
 			
 			//prekida se izvrsavanje programa i prikazuje se "Page not found"
-			throw new Zend_Controller_Router_Exception('Invalid indexSlide id: ' . $id, 404);
+			throw new Zend_Controller_Router_Exception('Invalid index slide id: ' . $id, 404);
 		}
 		
 		$cmsIndexSlidesTable = new Application_Model_DbTable_CmsIndexSlides();
@@ -184,9 +184,9 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 						//open uploaded photo in temporary directory
 						$indexSlidePhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
 						
-						$indexSlidePhoto->fit(600, 400);
+						$indexSlidePhoto->fit(1400, 700);
 						
-						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/' . $indexSlide['id'] . '.jpg');
+						$indexSlidePhoto->save(PUBLIC_PATH . '/uploads/index-slides/salon-lepote-mirijevo-promocija-' . $indexSlide['id'] . '.jpg');
 						
 					} catch (Exception $ex) {
 						
@@ -200,7 +200,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 				$cmsIndexSlidesTable->updateIndexSlide($indexSlide['id'], $formData);
 				
 				//set system message
-				$flashMessenger->addMessage('IndexSlide has been updated', 'success');
+				$flashMessenger->addMessage('Index slide has been updated', 'success');
 
 				//redirect to same or another page
 				$redirector = $this->getHelper('Redirector');
@@ -255,12 +255,12 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 			$indexSlide = $cmsIndexSlidesTable->getIndexSlideById($id);
 
 			if (empty($indexSlide)) {
-				throw new Application_Model_Exception_InvalidInput('No indexSlide is found with id: ' . $id);
+				throw new Application_Model_Exception_InvalidInput('No index slide is found with id: ' . $id);
 			}
 
 			$cmsIndexSlidesTable->deleteIndexSlide($id);
 
-			$flashMessenger->addMessage('IndexSlide ' . $indexSlide['title'] . ' has been deleted', 'success');
+			$flashMessenger->addMessage('Index slide ' . $indexSlide['title'] . ' has been deleted', 'success');
 
 			//redirect to same or another page
 			$redirector = $this->getHelper('Redirector');
@@ -320,12 +320,12 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 			$indexSlide = $cmsIndexSlidesTable->getIndexSlideById($id);
 
 			if (empty($indexSlide)) {
-				throw new Application_Model_Exception_InvalidInput('No indexSlide is found with id: ' . $id);
+				throw new Application_Model_Exception_InvalidInput('No index slide is found with id: ' . $id);
 			}
 
 			$cmsIndexSlidesTable->disableIndexSlide($id);
 
-			$flashMessenger->addMessage('IndexSlide ' . $indexSlide['title'] . ' has been disabled', 'success');
+			$flashMessenger->addMessage('Index slide ' . $indexSlide['title'] . ' has been disabled', 'success');
 
 			//redirect to same or another page
 			$redirector = $this->getHelper('Redirector');
@@ -390,7 +390,7 @@ class Admin_IndexslidesController extends Zend_Controller_Action
 
 			$cmsIndexSlidesTable->enableIndexSlide($id);
 
-			$flashMessenger->addMessage('IndexSlide ' . $indexSlide['title'] . ' has been enabled', 'success');
+			$flashMessenger->addMessage('Index slide ' . $indexSlide['title'] . ' has been enabled', 'success');
 
 			//redirect to same or another page
 			$redirector = $this->getHelper('Redirector');

@@ -73,7 +73,7 @@ class ContactController extends Zend_Controller_Action
                 $fromEmail = $formData['email'];
                 $toEmail = 'bebeautymirijevo@gmail.com';
                 $fromName = $formData['first_name'];
-                $message = $formData['message'];
+                $message = $formData['message']. '</br>' . $formData['phone'];
                 $subject = $formData['subject'];
                 
                 

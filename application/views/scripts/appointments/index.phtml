@@ -1,0 +1,85 @@
+<?php
+$sitemapPage = $this->sitemapPage;
+$this->headTitle($sitemapPage['title']);
+$this->headMeta()->appendName('Description', $sitemapPage['description']);
+$this->headMeta()->appendName('Keywords', 'manikir, pedikir, nokti, depilacija, masaža, solarijum');
+?>
+
+
+<!-- CORE : begin -->
+			<div id="core">
+
+				<!-- PAGE HEADER : begin -->
+				<div id="page-header">
+					<div class="container">
+						<h1><?php echo $this->escape($sitemapPage['title']); ?></h1>
+                                                
+						<?php echo $this->breadcrumbs($sitemapPage); ?>
+					</div>
+				</div>
+                                
+                                <div class="container">
+
+					<!-- PAGE CONTENT : begin -->
+					<div id="page-content">
+                                                  
+                                                    <div class="row">
+                                                    <div class="col-lg-12">
+                                                            <div class="panel panel-default">
+
+                                                                    <div class="panel-body">
+
+                                                                        <div id='calendar'></div>
+
+                                                                    </div>
+                                                            </div>
+                                                    </div>
+                                                    </div>
+                                                    
+                                            
+                                        </div>
+                                </div>
+                                    
+			</div>
+			<!-- CORE : end -->
+
+<?php 
+    $this->headLink()->appendStylesheet($this->baseUrl('/admin/bower_components/fullcalendar/fullcalendar.css')); 
+      //$this->headLink()->appendStylesheet($this->baseUrl('/admin/bower_components/fullcalendar/fullcalendar.min.css'));
+     // $this->headLink()->appendStylesheet($this->baseUrl('/admin/bower_components/fullcalendar/fullcalendar.print.css'));
+      $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/fullcalendar/lib/moment.min.js'));
+      $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/fullcalendar/fullcalendar.js'));
+      //$this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/fullcalendar/locale-all.js'));
+      $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/fullcalendar/locale/sr.js'));
+      //$this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/fullcalendar/locale/sr-cyrl.js'));
+     // $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/fullcalendar/fullcalendar.min.js'));
+     // $this->inlineScript()->appendFile($this->baseUrl('/admin/bower_components/fullcalendar/lib/jquery-ui.min.js'));
+?>
+
+<script>
+<?php $this->inlineScript()->captureStart(); ?>
+$(document).ready(function() {
+
+ $('#calendar').fullCalendar({
+    header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'agendaWeek,agendaDay'
+    },
+    navLinks: true, // can click day/week names to navigate views
+    selectable: false,
+    selectHelper: true,
+    editable: false,
+    defaultView: 'agendaWeek',
+    minTime: '09:00:00',
+    timezone: 'local',
+    //timeFormat: 'H(:mm)',
+    eventLimit: true, // allow "more" link when too many events
+    events: '<?php echo $this->url(array('controller' => 'appointments', 'action' => 'calendar'), 'default', true); ?>',
+   
+ });
+ 
+ });
+<?php $this->inlineScript()->captureEnd(); ?>
+</script>                        
+                        

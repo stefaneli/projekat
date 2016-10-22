@@ -9,7 +9,35 @@ $indexSlides =$this->indexSlides;
 <!-- MAIN SLIDER : begin -->
 			<div id="main-slider" class="m-has-hover-stop" data-interval="8000">
 				<div class="slide-list">
+                                    <?php foreach($indexSlides as $slide) { ?>
+                                        
+                                    <div class="slide slide-1 m-bg-align-right" data-label="<?php echo $this->escape($slide['title']); ?>" style="background-image: url( '<?php echo $this->indexSlideImgUrl($slide); ?>' );">
+						<div class="slide-bg">
+							<div class="container">
+								<div class="slide-inner">
+									<div class="slide-content various-content textalign-left valign-middle">
 
+                                                                            <h2 style="font-size: 2em"><?php echo $this->escape($slide['title']); ?></h2>
+                                                                                
+                                                                                <?php if($slide['link_type'] != 'NoLink'){ ?>
+                                                                                
+                                                                                <h3 style="font-size: 1em">"><?php echo $this->escape($slide['description']); ?></h3>
+                                                                        
+                                                                                <a target="_blank"
+                                                                                   href="<?php echo $this->indexSlideLinkUrl($slide); ?>"><?php echo $this->escape($slide['link_label']); ?></a>
+
+                                                                                <?php } else{ ?>
+                                                                                
+										<h3 style="font-size: 1.5em"><?php echo $this->escape($slide['description']); ?></h3>
+                                                                                
+                                                                                <?php } ?>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                                        
+                                   <?php } ?>
 					<!-- SLIDE 1 : begin -->
 					<div class="slide slide-1 m-bg-align-right" data-label="Welcome to BEAUTYSPOT" style="background-image: url( '/front/images/slide_01.jpg' );">
 						<div class="slide-bg">

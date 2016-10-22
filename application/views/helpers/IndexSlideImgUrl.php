@@ -4,7 +4,7 @@ class Zend_View_Helper_IndexSlideImgUrl extends Zend_View_Helper_Abstract
 {
 	public function indexSlideImgUrl($indexSlide) {
 		
-		$indexSlideImgFileName = $indexSlide['id'] . '.jpg';
+		$indexSlideImgFileName = 'salon-lepote-mirijevo-promocija-' . $indexSlide['id'] . '.jpg';
 		
 		$indexSlideImgFilePath = PUBLIC_PATH . '/uploads/index-slides/' . $indexSlideImgFileName;                    ;
 		
@@ -15,7 +15,7 @@ class Zend_View_Helper_IndexSlideImgUrl extends Zend_View_Helper_Abstract
 		
 		if (is_file($indexSlideImgFilePath)) {
 			
-			return $this->view->baseUrl('/uploads/index-slides/' . $indexSlideImgFileName);
+			return $this->view->baseUrl('/uploads/index-slides/' . $indexSlideImgFileName. '?' . time()) ;
 			
 		} else {
 			return '';

@@ -46,7 +46,6 @@ class Admin_AppointmentsController extends Zend_Controller_Action
     public function addAction() {
         
         $cmsAppDbTable = new Application_Model_DbTable_CmsAppointments();
-        //$date = $this->getParam('date_hidden');
         echo $date = $this->getParam('date_hidden');
         echo $start = date('Y-m-d H:i:s', strtotime($date));
         echo $end = date('Y-m-d H:i:s', strtotime($date));

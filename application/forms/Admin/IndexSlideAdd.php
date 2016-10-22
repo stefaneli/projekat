@@ -47,8 +47,8 @@ class Application_Form_Admin_IndexSlideAdd extends Zend_Form
 		$indexSlidePhoto->addValidator('Count', true, 1)
 			->addValidator('MimeType', true, array('image/jpeg', 'image/gif', 'image/png'))
 			->addValidator('ImageSize', false, array(
-				'minwidth' => 600,
-				'minheight' => 400,
+				'minwidth' => 1400,
+				'minheight' => 700,
 				'maxwidth' => 2000,
 				'maxheight' => 2000
 			))
